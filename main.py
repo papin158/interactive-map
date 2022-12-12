@@ -23,6 +23,12 @@ from folium.features import DivIcon, GeoJsonTooltip, GeoJsonPopup
 
 st.set_page_config(page_title="Карта", layout="wide")
 
+st.markdown(f'''
+    <style>
+        section[data-testid="stSidebar"] .css-ng1t4o {{width: 12rem;}}
+        section[data-testid="stSidebar"] .css-1d391kg {{width: 12rem;}}
+    </style>
+''',unsafe_allow_html=True)
 
 @st.cache
 def init_json_kld():
@@ -376,7 +382,8 @@ async def bar_chart(df: pd.DataFrame, dictionary: dict, state_name=None, x=None,
         else:
             df = df.sort_values(by=y)
             st.write("Население Калининградской области по округам")
-            st.plotly_chart(px.funnel(data_frame=df, y='Городские округа:', x=y, orientation='h'))#, values=y, names='Городские округа:', labels=x))
+            st.plotly_chart(px.funnel(data_frame=df, y='Городские округа:', x=y,
+                                      orientation='h'))  # , values=y, names='Городские округа:', labels=x))
 
     # if dictionary[1]:
     #     if
@@ -392,26 +399,74 @@ def display_region_filter(df: pd.DataFrame, state_name: str):
     state_list = [''] + list(df['Городские округа:'].unique())
     # state_list.sort()
     state_index = state_list.index(state_name) if state_name and state_name in state_list else 0
-    return st.sidebar.selectbox(label='Выберите город', options=state_list, index=state_index)
+    return st.sidebar.selectbox(label='Выберите городской округ из списка', options=state_list, index=state_index)
 
-def test():
+
+def test(state_name: str, data_kld: pd.DataFrame) -> [str, bool]:
+    if 'disabled_' not in st.session_state:
+        st.session_state.disabled_ = True
+        st.session_state.visibility = 'visible'
+        st.session_state.disabled_1 = False
+        st.session_state.disabled_2 = False
+
     var0 = st.sidebar.empty()
     ba = var0.write("Как выбрать муниципалитет")
-    if not ba:
-        var1 = st.sidebar.empty()
-        var2 = st.sidebar.empty()
-        bat = var1.checkbox("Кнопками")
-        brat = var2.checkbox("Из списка")
-        if bat or brat:
-            if brat:
-                st.sidebar.selectbox('Выберите город', ['1','2','3'])
-            if bat:
-                st.sidebar.button('12')
-            var0.empty()
-            var1.empty()
-            var2.empty()
-async def main():
+    b = st.sidebar.columns(2, gap='small')
+    with b[0]:
+        var1 = st.empty()
+    with b[1]:
+        var2 = st.empty()
 
+    bat = var1.checkbox("Кнопками", key='disabled_1', disabled=st.session_state.disabled_2)
+    brat = var2.checkbox("Из списка", key='disabled_2', disabled=st.session_state.disabled_1)
+
+    if bat or brat:
+        bar = ''
+        if bat:
+            data_kld = list(data_kld['Городские округа:'].unique())
+            data_len = len(data_kld)
+
+            max_columns = 3
+            no = 0
+            n = round(data_len / max_columns) + 1
+
+            if data_len < max_columns:
+                raise ValueError("Количество колонок превышает количество значений")
+
+            a = st.sidebar.columns(max_columns, gap='small')
+            for an in range(max_columns):
+                with a[an]:
+                    if n <= data_len:
+                        for i in range(no, n):
+                            if st.button(data_kld[i][0:4], key=f'{data_kld[i]}'):
+                                bar = data_kld[i]
+
+                    no = n
+                    n += round(data_len / max_columns)
+
+            if st.sidebar.button("Калининградская область"):
+                bar = ''
+            return bar
+        if brat:
+            state_name = display_region_filter(state_name=state_name, df=data_kld)
+            return state_name
+    # if not ba:
+    #     var1 = st.sidebar.empty()
+    #     var2 = st.sidebar.empty()
+    #     bat = var1.checkbox("Кнопками")
+    #     brat = var2.checkbox("Из списка")
+    #     if bat or brat:
+    #         if brat:
+    #
+    #             st.sidebar.selectbox('Выберите город', ['1','2','3'])
+    #         if bat:
+    #             st.sidebar.button('12')
+    #         var0.empty()
+    #         var1.empty()
+    #         var2.empty()
+
+
+async def main():
     year = year_for_display()
     st.sidebar.write('Сортировать по')
 
@@ -428,7 +483,8 @@ async def main():
     data_kld = init_data_kld()[0]
     state_name = await display_map(year, population_check=labels['Население'],
                                    moving_check=labels["Естественное движение населения"])
-    state_name = display_region_filter(state_name=state_name, df=data_kld)
+    state_name = test(state_name, data_kld)
+    # state_name = display_region_filter(state_name=state_name, df=data_kld)
 
     col1, col2, col3 = st.columns(3)
     with col1:
@@ -448,7 +504,6 @@ async def main():
     with col2:
         pass
 
-    #test()
     await bar_chart(df=init_data_kld()[0].sort_values(by='Год'),
                     state_name=state_name, x='Год', y='Население', year=year, dictionary=labels)
 
