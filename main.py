@@ -432,19 +432,19 @@ async def main():
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        match radio:
-            case _ if radio == labels_keys[0]:
-                display_fraud_facts(data_kld, year, state_name, var='Население',
-                                    metric_title=f'''Население {f"городского округа {state_name} на {year} г."
-                                    if state_name else f"Калининградской области за {year} г."}'''
-                                    )
 
-            case _ if radio == labels_keys[1]:
-                display_fraud_facts(data_locale(), year, state_name, var="Динамика",
-                                    metric_title=f'''Всё естественное движение в {f"городском округе {state_name}"
-                                                                                  f" на {year} г." if state_name else f"Калининградской области на {year} г."}
-                                            '''
-                                    )
+        if radio == labels_keys[0]:
+            display_fraud_facts(data_kld, year, state_name, var='Население',
+                                metric_title=f'''Население {f"городского округа {state_name} на {year} г."
+                                if state_name else f"Калининградской области за {year} г."}'''
+                                )
+
+        if radio == labels_keys[1]:
+            display_fraud_facts(data_locale(), year, state_name, var="Динамика",
+                                metric_title=f'''Всё естественное движение в {f"городском округе {state_name}"
+                                                                              f" на {year} г." if state_name else f"Калининградской области на {year} г."}
+                                        '''
+                                )
     with col2:
         pass
 
