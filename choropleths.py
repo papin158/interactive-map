@@ -85,29 +85,7 @@ def hsv2rgb(hsv):
     return rgb
 
 
-data_kld = list(data_kld['Городские округа:'].unique())
-data_len = len(data_kld)
 
-max_columns = 3
-no = 0
-n = round(data_len / max_columns)+1
-
-if data_len < max_columns:
-    raise ValueError("Количество колонок превышает количество значений")
-
-a = {0: 1, 1: 2, 2: 3, }
-for an in range(max_columns):
-    if a[an]:
-
-        if n <= data_len:
-            for i in range(no, n):
-                print(data_kld[i][0:4])
-        else:
-            print(data_kld[n][0:4])
-
-        no = n
-        n += round(data_len / max_columns)
-
-
-
-
+generate_list_names_regions_kaliningrad = pd.read_csv(r"D:\Temp\pythonProject4\Данные csv\КалининградСтат - Данные - Об. розн. торговли без суб. мал. пред..csv")
+generate_list_names_regions_kaliningrad = generate_list_names_regions_kaliningrad.set_index('Городские округа:').columns.tolist()
+print(generate_list_names_regions_kaliningrad)

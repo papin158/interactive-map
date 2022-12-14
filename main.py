@@ -1,5 +1,4 @@
 import asyncio
-
 import branca
 import folium
 import streamlit as st
@@ -103,7 +102,7 @@ def init_style(year):
 
 
 def style_function_suburb(feature, year: str):
-    k1 = feature["properties"]['Ест_движ_нас']
+    k1 = feature["properties"]['Естест. движение насел']#['Ест_движ_нас']
     data = init_style(year)['Динамика']
     scale = (data.quantile((0.0, 0.1, 0.3, 0.4, 0.5, 0.6, 0.7, 0.89, 0.98, 1.0))).tolist()
     for n, i in reversed(list(enumerate(scale))):
@@ -341,7 +340,7 @@ def data_locale(init=init_natural_move, var_name='Год', value_name="Дина�
 
 
 @st.cache(allow_output_mutation=True)
-def branch(init=init_natural_move, *args, df=None):
+def branch(init=init_natural_move, *, df=None):
     if df is not None:
         df = df.set_index('Городские округа:').columns.tolist()
         df.sort(reverse=True)
@@ -421,7 +420,6 @@ def test(state_name: str, data_kld: pd.DataFrame) -> [str, bool]:
     brat = var2.checkbox("Из списка", key='disabled_2', disabled=st.session_state.disabled_1)
 
     if bat or brat:
-        bar = ''
         if bat:
             data_kld = list(data_kld['Городские округа:'].unique())
             data_len = len(data_kld)
@@ -439,14 +437,14 @@ def test(state_name: str, data_kld: pd.DataFrame) -> [str, bool]:
                     if n <= data_len:
                         for i in range(no, n):
                             if st.button(data_kld[i][0:4], key=f'{data_kld[i]}'):
-                                bar = data_kld[i]
+                                state_name = data_kld[i]
 
                     no = n
                     n += round(data_len / max_columns)
 
             if st.sidebar.button("Калининградская область"):
-                bar = ''
-            return bar
+                state_name = ''
+            return state_name
         if brat:
             state_name = display_region_filter(state_name=state_name, df=data_kld)
             return state_name
@@ -508,5 +506,18 @@ async def main():
                     state_name=state_name, x='Год', y='Население', year=year, dictionary=labels)
 
 
+
+async def test_main():
+    from loader import get_tooltip, get_geodata, get_melt, display_facts
+    #geodata, index_data = get_geodata()[0], get_geodata()[1]
+
+    kld_map = folium.Map(
+        location=[54.709300, 20.5082600],
+        zoom_start=9,)
+    year = '2021'
+    melt_data = [i for i in get_melt(gen_type='data')]
+    display_facts(melt_data[-1], '2022', "Численность", state_name='г. Калининград')
+
+    st_map = st_folium(kld_map)
 if __name__ == '__main__':
-    asyncio.run(main())
+    asyncio.run(test_main())
