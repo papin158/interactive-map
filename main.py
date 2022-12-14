@@ -27,7 +27,8 @@ st.markdown(f'''
         section[data-testid="stSidebar"] .css-ng1t4o {{width: 12rem;}}
         section[data-testid="stSidebar"] .css-1d391kg {{width: 12rem;}}
     </style>
-''',unsafe_allow_html=True)
+''', unsafe_allow_html=True)
+
 
 @st.cache
 def init_json_kld():
@@ -102,7 +103,7 @@ def init_style(year):
 
 
 def style_function_suburb(feature, year: str):
-    k1 = feature["properties"]['Естест. движение насел']#['Ест_движ_нас']
+    k1 = feature["properties"]['Естест. движение насел']  # ['Ест_движ_нас']
     data = init_style(year)['Динамика']
     scale = (data.quantile((0.0, 0.1, 0.3, 0.4, 0.5, 0.6, 0.7, 0.89, 0.98, 1.0))).tolist()
     for n, i in reversed(list(enumerate(scale))):
@@ -506,18 +507,51 @@ async def main():
                     state_name=state_name, x='Год', y='Население', year=year, dictionary=labels)
 
 
-
-async def test_main():
-    from loader import get_tooltip, get_geodata, get_melt, display_facts
-    #geodata, index_data = get_geodata()[0], get_geodata()[1]
-
+async def test_display_map(year):
     kld_map = folium.Map(
         location=[54.709300, 20.5082600],
-        zoom_start=9,)
-    year = '2021'
-    melt_data = [i for i in get_melt(gen_type='data')]
-    display_facts(melt_data[-1], '2022', "Численность", state_name='г. Калининград')
-
+        zoom_start=9, )
     st_map = st_folium(kld_map)
+
+    state_name = ''
+    if st_map['last_active_drawing']:
+        state_name = st_map['last_active_drawing']['properties']['name']
+
+    return state_name
+
+
+from loader import get_tooltip, get_geodata, get_melt, display_facts
+
+
+async def test_main():
+    # geodata, index_data = get_geodata()[0], get_geodata()[1]
+
+    state_name = ''
+    year = year_for_display()
+    melt_data = [i for i in get_melt(gen_type='data')]
+    dict_data = {i: False for i in get_melt(gen_type='names')}
+
+    state_name = await test_display_map(year)
+    state_name = test(state_name, melt_data[0])
+    await radio_click(df=melt_data, dict_data=dict_data, year=year, state_name=state_name)
+
+
+async def radio_click(df: pd.DataFrame, dict_data: dict, year: str, state_name: str):
+    radio = st.sidebar.radio('Фильтр', dict_data.keys(), key=1)
+    for i in dict_data:
+        if radio == i:
+            dict_data[i] = True
+        else:
+            dict_data[i] = False
+
+    labels_keys = {e: i for e, i in enumerate(dict_data)}
+
+    for e, i in enumerate(labels_keys):
+        if radio == labels_keys[i]:
+            display_facts(df=df[e], year=year, state_name=state_name, var='Динамика',
+                          metric_title=f'''Население {f"городского округа {state_name} на {year} г."
+                          if state_name else f"Калининградской области за {year} г."}'''
+                          )
+
 if __name__ == '__main__':
     asyncio.run(test_main())
