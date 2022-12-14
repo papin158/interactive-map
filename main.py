@@ -534,6 +534,8 @@ async def test_main():
     state_name = await test_display_map(year)
     state_name = test(state_name, melt_data[0])
     await radio_click(df=melt_data, dict_data=dict_data, year=year, state_name=state_name)
+    await bar_chart(df=melt_data[0].sort_values(by='Год'),
+                    state_name=state_name, x='Год', y='Население', year=year, dictionary=dict_data)
 
 
 async def radio_click(df: pd.DataFrame, dict_data: dict, year: str, state_name: str):
