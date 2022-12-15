@@ -1,4 +1,6 @@
 import asyncio
+from typing import List
+
 import branca
 import folium
 import streamlit as st
@@ -353,15 +355,15 @@ def branch(init=init_natural_move, *, df=None):
     return bra
 
 
-async def bar_chart(df: pd.DataFrame, dictionary: dict, state_name=None, x=None, y=None, year=None):
-    dictionary = {e: k for e, k in enumerate(dictionary.values())}
+async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=None, y=None, year=None):
+    catalog = [k for k in catalog.values()]
 
-    if state_name:
-        df = df[df['Городские округа:'] == state_name]
-    else:
-        df = df[df['Год'] == year]
-
-    if dictionary[0]:
+    if catalog[-1]:
+        df = df[-1].sort_values(by='Год', ascending=True)
+        if state_name:
+            df = df[df['Городские округа:'] == state_name]
+        else:
+            df = df[df['Год'] == year]
         if state_name:
             fig = go.Figure()
             st.plotly_chart(px.funnel(data_frame=df, y=y, x=x))
@@ -382,8 +384,10 @@ async def bar_chart(df: pd.DataFrame, dictionary: dict, state_name=None, x=None,
         else:
             df = df.sort_values(by=y)
             st.write("Население Калининградской области по округам")
-            st.plotly_chart(px.funnel(data_frame=df, y='Городские округа:', x=y,
-                                      orientation='h'))  # , values=y, names='Городские округа:', labels=x))
+
+            st.plotly_chart(px.funnel(data_frame=df, x='Городские округа:', y=y,
+                                      orientation='v').update_xaxes(
+                col='Динамика'))  # , values=y, names='Городские округа:', labels=x))
 
     # if dictionary[1]:
     #     if
@@ -504,13 +508,28 @@ async def main():
         pass
 
     await bar_chart(df=init_data_kld()[0].sort_values(by='Год'),
-                    state_name=state_name, x='Год', y='Население', year=year, dictionary=labels)
+                    state_name=state_name, x='Год', y='Население', year=year, catalog=labels)
 
 
-async def test_display_map(year):
+from loader import get_geodata, get_melt, display_facts, create_choropleth
+
+
+async def test_display_map(year, melt_data: [pd.DataFrame], dict_data: dict):
+    catalog = [k for k in dict_data.keys()]
+    dict_data = [k for k in dict_data.values()]
+
     kld_map = folium.Map(
         location=[54.709300, 20.5082600],
         zoom_start=9, )
+    geo_data = get_geodata()[0]
+
+    for i in range(len(dict_data)):
+        create_choropleth(geodata=geo_data, data=melt_data, index_data=catalog, year=year, name=catalog, iter=i,
+                          enable_this_layer=dict_data[i]).add_to(kld_map)
+    # fg2 = create_choropleth(geodata=geo_data, data=melt_data[1], index_data=dict_data[1], year=year, name=dict_data[1])
+    # kld_map.add_child(fg1).add_child(fg2)
+
+    folium.LayerControl().add_to(kld_map)
     st_map = st_folium(kld_map)
 
     state_name = ''
@@ -518,9 +537,6 @@ async def test_display_map(year):
         state_name = st_map['last_active_drawing']['properties']['name']
 
     return state_name
-
-
-from loader import get_tooltip, get_geodata, get_melt, display_facts
 
 
 async def test_main():
@@ -531,14 +547,7 @@ async def test_main():
     melt_data = [i for i in get_melt(gen_type='data')]
     dict_data = {i: False for i in get_melt(gen_type='names')}
 
-    state_name = await test_display_map(year)
-    state_name = test(state_name, melt_data[0])
-    await radio_click(df=melt_data, dict_data=dict_data, year=year, state_name=state_name)
-    await bar_chart(df=melt_data[0].sort_values(by='Год'),
-                    state_name=state_name, x='Год', y='Население', year=year, dictionary=dict_data)
-
-
-async def radio_click(df: pd.DataFrame, dict_data: dict, year: str, state_name: str):
+    labels_keys = {e: i for e, i in enumerate(dict_data.keys())}
     radio = st.sidebar.radio('Фильтр', dict_data.keys(), key=1)
     for i in dict_data:
         if radio == i:
@@ -546,14 +555,40 @@ async def radio_click(df: pd.DataFrame, dict_data: dict, year: str, state_name: 
         else:
             dict_data[i] = False
 
-    labels_keys = {e: i for e, i in enumerate(dict_data)}
+    state_name = await test_display_map(year, melt_data, dict_data)
+    state_name = test(state_name, melt_data[0])
 
+    #st.write(labels_keys)
     for e, i in enumerate(labels_keys):
         if radio == labels_keys[i]:
-            display_facts(df=df[e], year=year, state_name=state_name, var='Динамика',
+            display_facts(df=melt_data[e], year=year, state_name=state_name, var='Динамика',
                           metric_title=f'''Население {f"городского округа {state_name} на {year} г."
                           if state_name else f"Калининградской области за {year} г."}'''
                           )
+
+    # await radio_click(df=melt_data, dict_data=dict_data, year=year, state_name=state_name)
+
+    await bar_chart(df=melt_data,
+                    state_name=state_name, x='Год', y='Динамика', year=year, catalog=dict_data)
+
+
+# async def radio_click(df: List[pd.DataFrame], dict_data: dict, year: str, state_name: str):
+#     radio = st.sidebar.radio('Фильтр', dict_data.keys(), key=1)
+#     for i in dict_data:
+#         if radio == i:
+#             dict_data[i] = True
+#         else:
+#             dict_data[i] = False
+#
+#     labels_keys = {e: i for e, i in enumerate(dict_data)}
+#
+#     for e, i in enumerate(labels_keys):
+#         if radio == labels_keys[i]:
+#             display_facts(df=df[e], year=year, state_name=state_name, var='Динамика',
+#                           metric_title=f'''Население {f"городского округа {state_name} на {year} г."
+#                           if state_name else f"Калининградской области за {year} г."}'''
+#                           )
+
 
 if __name__ == '__main__':
     asyncio.run(test_main())

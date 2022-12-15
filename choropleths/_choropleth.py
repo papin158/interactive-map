@@ -1,17 +1,12 @@
-import folium, colorsys, _tooltips
+import folium, colorsys, choropleths._tooltips
 import numpy as np
 
-def init_style(year, data_loc):
-    data = data_loc
-    data = data[(data['Год'] == year)]
 
-    return data
-
-def style_function_suburb(feature, index_data, year: str):
+def __style_function_suburb__(feature, data, index_data, year: str):
     k1 = feature["properties"][index_data]
-    data = init_style(year, k1)['Динамика']
+    data = data[(data['Год'] == year)]['Динамика']
     scale = (data.quantile((0.0, 0.1, 0.3, 0.4, 0.5, 0.6, 0.7, 0.89, 0.98, 1.0))).tolist()
-    for n, i in reversed(list(enumerate(scale))):
+    for n, e in reversed(list(enumerate(scale))):
         blue = 183
         green = 86
         red = 24
@@ -23,30 +18,37 @@ def style_function_suburb(feature, index_data, year: str):
         if np.float_(k1[year]) >= scale[n]:
             return f'rgba({red},{green},{blue}, 0.9)'
 
-def generate_choropleth(geodata, index_data, year, name):
-        fg1 = folium.FeatureGroup(name=name, show=True)
-        for feature in geodata['features']:
-                gmc = folium.GeoJson(feature,
-                                     style_function=lambda feature: {  # Меняет цветовую схему в статичном режиме
-                                             'fillColor': style_function_suburb(feature, index_data, year),
-                                             'fillOpacity': 1,
-                                             'color': 'white',
-                                             'clickable': True,
-                                             'weight': 1.7,
-                                             # 'dashArray': '5, 5'
-                                     },
-                                     highlight_function=lambda feature: {  # Меняет цветовую схему при наведении
-                                             'fillColor': '#0a085f',
-                                             'fillOpacity': 1.,
-                                             'color': 'yellow',
-                                             'clickable': True,
-                                             'weight': 2.7,
-                                             'dashArray': '3, 6'
-                                     }
-                                     )
-                tooltip = _tooltips.get_my_dict_string(feature=feature, index_data=index_data, year=year)
-                #folium.Html(tooltip, script=True)  # pg; create HTML
-                folium.Tooltip(tooltip).add_to(gmc)  # tol1;
 
-                gmc.add_to(fg1)
+def _generate_choropleth(geodata, data, index_data, year, name, iter, enable_this_layer) -> folium.FeatureGroup:
+    if isinstance(data, list):
+        data = data[iter]
+    if isinstance(index_data, list):
+        index_data = index_data[iter]
+    if isinstance(name, list):
+        name = name[iter]
+    fg1 = folium.FeatureGroup(name=name, show=enable_this_layer)
+    for feature in geodata['features']:
+        gmc = folium.GeoJson(feature,
+                             style_function=lambda feature: {  # Меняет цветовую схему в статичном режиме
+                                 'fillColor': __style_function_suburb__(feature, data, index_data, year),
+                                 'fillOpacity': 1,
+                                 'color': 'white',
+                                 'clickable': True,
+                                 'weight': 1.7,
+                                 # 'dashArray': '5, 5'
+                             },
+                             highlight_function=lambda feature: {  # Меняет цветовую схему при наведении
+                                 'fillColor': '#0a085f',
+                                 'fillOpacity': 1.,
+                                 'color': 'yellow',
+                                 'clickable': True,
+                                 'weight': 2.7,
+                                 'dashArray': '3, 6'
+                             }
+                             )
+        tooltip = choropleths._tooltips.get_my_dict_string(feature=feature, index_data=index_data, year=year)
+        # folium.Html(tooltip, script=True)  # pg; create HTML
+        folium.Tooltip(tooltip).add_to(gmc)  # tol1;
 
+        gmc.add_to(fg1)
+    return fg1

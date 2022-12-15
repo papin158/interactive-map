@@ -6,7 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="9050ac45-018f-4cd1-a56e-ebbf3dc5bd67" name="Changes" comment="Add">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/choropleths/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/choropleths/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/choropleths/_choropleth.py" beforeDir="false" afterPath="$PROJECT_DIR$/choropleths/_choropleth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/choropleths/_tooltips.py" beforeDir="false" afterPath="$PROJECT_DIR$/choropleths/_tooltips.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/_all_geo_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/_all_geo_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/КалининградСтат - Данные - Об. общест. питания без суб. мал. пред..csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/КалининградСтат - Данные - Об. общест. питания без суб. мал. пред..csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/КалининградСтат - Данные - Об. розн. торговли без суб. мал. пред..csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/КалининградСтат - Данные - Об. розн. торговли без суб. мал. пред..csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +54,29 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python._all_geo_data (1)">
+    <configuration name="_all_geo_data (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject4" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data/_all_geo_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="_all_geo_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pythonProject4" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -160,11 +189,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python._all_geo_data (1)" />
         <item itemvalue="Python._get_all_geo_data" />
         <item itemvalue="Python.all_choropleths" />
         <item itemvalue="Python.loader" />
         <item itemvalue="Python.__all_geo_data" />
-        <item itemvalue="Python.choropleths" />
       </list>
     </recent_temporary>
   </component>
@@ -198,7 +227,7 @@
       <workItem from="1670856902191" duration="39000" />
       <workItem from="1670856949209" duration="21434000" />
       <workItem from="1670955486025" duration="18367000" />
-      <workItem from="1671008161227" duration="31643000" />
+      <workItem from="1671008161227" duration="50861000" />
     </task>
     <task id="LOCAL-00001" summary="Add">
       <created>1670856617057</created>
@@ -249,7 +278,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671040156366</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add">
+      <created>1671043163157</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1671043163157</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add">
+      <created>1671043300607</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1671043300607</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,33 +340,25 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>65</line>
+          <line>67</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>104</line>
+          <line>106</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>332</line>
+          <line>334</line>
           <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/loader.py</url>
-          <line>4</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/loader.py</url>
-          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject4$all_data.coverage" NAME="all_data Coverage Results" MODIFIED="1671020505821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
+    <SUITE FILE_PATH="coverage/pythonProject4$_all_geo_data__1_.coverage" NAME="_all_geo_data (1) Coverage Results" MODIFIED="1671055855734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/pythonProject4$test.coverage" NAME="test Coverage Results" MODIFIED="1669826032759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pythonProject4$choropleths.coverage" NAME="choropleths Coverage Results" MODIFIED="1670964774336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pythonProject4$main.coverage" NAME="main Coverage Results" MODIFIED="1669412482172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

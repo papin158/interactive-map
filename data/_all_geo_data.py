@@ -1,4 +1,6 @@
 import os
+from typing import Tuple
+
 import pandas as pd
 import geopandas as gpd
 import numpy as np
@@ -6,8 +8,8 @@ import streamlit as st
 import folium
 
 
-@st.cache(persist=True)
-def _get_geojson_modification() -> [gpd.GeoDataFrame, list]:
+#@st.cache(persist=True)
+def _get_geojson_modification() -> Tuple[gpd.GeoDataFrame, list]:
     temp_geo_data = "./admin_level_6.geojson" if os.path.exists(
         "./admin_level_6.geojson") else "../admin_level_6.geojson"
     temp_geo_data = gpd.read_file(temp_geo_data, encoding="utf-8")
@@ -23,7 +25,7 @@ def _get_geojson_modification() -> [gpd.GeoDataFrame, list]:
     for name in list_data:
         for s in geo_data['features']:
             s['properties'][name[27:-4]] = {
-                i: pd.read_csv(f'{path_data}/{name}').set_index(index_for_data).astype('str').loc[
+                i: pd.read_csv(f'{path_data}/{name}').set_index(index_for_data).astype('str').replace(r"[^-\d]", "0", regex=True).loc[
                     s['properties']['name'], i] for i in
                 years}
     del years, list_data, index_for_data, path_data
@@ -53,18 +55,19 @@ def _get_all_melt(*, var_name: str = None, value_name: str = None, gen_type: str
                 value_name=value_name,
                 value_vars=years
             )
+            get_data[value_name] = get_data[value_name].replace(r"[\D]", "0", regex=True).astype(np.int32)
             yield get_data
     elif gen_type == "names":
         for name in list_data:
             yield name[27:-4]
 
 
-def _display_fraud_facts(df, year, metric_title, var: str = None, state_name=None):
-
+def _display_fraud_facts(df: pd.DataFrame, year, metric_title, var: str = None, state_name=None):
     if not var:
         var: str = 'Динамика'
 
     kpnm = df[(df['Год'] == year)]
+    kpnm['Динамика'] = kpnm['Динамика'].replace(r"[\D]", "0", regex=True).astype(np.int32)
 
     if state_name:
         kpnm = kpnm[kpnm['Городские округа:'] == state_name]
@@ -75,10 +78,10 @@ def _display_fraud_facts(df, year, metric_title, var: str = None, state_name=Non
 # import time
 #
 # start = time.time()
-# data = [i for i in get_all_melt(gen_type='data')]
-# name_files = [i for i in get_all_melt(gen_type='names')]
-# #print(data[-1])
-# display_fraud_facts(data[-1], '2022', "Жопа")
+# data = [i for i in _get_all_melt(gen_type='data')]
+# name_files = [i for i in _get_all_melt(gen_type='names')]
+# #print(data[2])
+# _display_fraud_facts(data[2], '2022', "Жопа")
 # end = time.time()
 # total = end - start
 # print(total)

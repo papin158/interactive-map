@@ -1,8 +1,9 @@
 import warnings
 import geopandas as gpd
+import pandas as pd
 
 from data import _all_geo_data
-from choropleths import _tooltips
+from choropleths import _choropleth
 
 
 def get_geodata():
@@ -26,8 +27,15 @@ def display_facts(df, year, metric_title, var: str = None, state_name=None):
     return _all_geo_data._display_fraud_facts(df, year, metric_title, var, state_name)
 
 
-def get_tooltip(feature: gpd.GeoDataFrame, index_data: str, *, year: str = None):
+# def get_tooltip(feature: gpd.GeoDataFrame, index_data: str, *, year: str = None):
+#     """
+#     Возвращает html-код для folium.choropleth, который показывает информацию при наведении
+#     """
+#     return _tooltips.get_my_dict_string(feature=feature, index_data=index_data, year=year)
+
+
+def create_choropleth(*, geodata: gpd.GeoDataFrame, data: pd.DataFrame, index_data: str, year: str, name: str, iter: int, enable_this_layer: bool):
     """
-    Возвращает html-код для folium.choropleth, который показывает информацию при наведении
+    Создаёт и возвращает пользователю уже сгенерированный слой
     """
-    return _tooltips.get_my_dict_string(feature=feature, index_data=index_data, year=year)
+    return _choropleth._generate_choropleth(geodata=geodata, data=data, index_data=index_data, year=year, name=name, iter=iter, enable_this_layer=enable_this_layer)
