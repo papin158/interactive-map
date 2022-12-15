@@ -8,7 +8,7 @@ import streamlit as st
 import folium
 
 
-#@st.cache(persist=True)
+@st.cache(persist=True)
 def _get_geojson_modification() -> Tuple[gpd.GeoDataFrame, list]:
     temp_geo_data = "./admin_level_6.geojson" if os.path.exists(
         "./admin_level_6.geojson") else "../admin_level_6.geojson"

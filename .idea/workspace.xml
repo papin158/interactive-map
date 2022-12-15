@@ -6,14 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9050ac45-018f-4cd1-a56e-ebbf3dc5bd67" name="Changes" comment="Add">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/choropleths/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/choropleths/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/choropleths/_choropleth.py" beforeDir="false" afterPath="$PROJECT_DIR$/choropleths/_choropleth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/choropleths/_tooltips.py" beforeDir="false" afterPath="$PROJECT_DIR$/choropleths/_tooltips.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/_all_geo_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/_all_geo_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/КалининградСтат - Данные - Об. общест. питания без суб. мал. пред..csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/КалининградСтат - Данные - Об. общест. питания без суб. мал. пред..csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/КалининградСтат - Данные - Об. розн. торговли без суб. мал. пред..csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/КалининградСтат - Данные - Об. розн. торговли без суб. мал. пред..csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,9 +185,7 @@
       <list>
         <item itemvalue="Python._all_geo_data (1)" />
         <item itemvalue="Python._get_all_geo_data" />
-        <item itemvalue="Python.all_choropleths" />
         <item itemvalue="Python.loader" />
-        <item itemvalue="Python.__all_geo_data" />
       </list>
     </recent_temporary>
   </component>
@@ -227,7 +219,8 @@
       <workItem from="1670856902191" duration="39000" />
       <workItem from="1670856949209" duration="21434000" />
       <workItem from="1670955486025" duration="18367000" />
-      <workItem from="1671008161227" duration="50861000" />
+      <workItem from="1671008161227" duration="50996000" />
+      <workItem from="1671120536091" duration="4761000" />
     </task>
     <task id="LOCAL-00001" summary="Add">
       <created>1670856617057</created>
@@ -292,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671043300607</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add">
+      <created>1671065355304</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1671065355304</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -1,5 +1,5 @@
 import asyncio
-from typing import List
+from typing import List, Tuple, Any
 
 import branca
 import folium
@@ -514,7 +514,7 @@ async def main():
 from loader import get_geodata, get_melt, display_facts, create_choropleth
 
 
-async def test_display_map(year, melt_data: [pd.DataFrame], dict_data: dict):
+async def test_display_map(year, melt_data: [pd.DataFrame], dict_data: dict, key):
     catalog = [k for k in dict_data.keys()]
     dict_data = [k for k in dict_data.values()]
 
@@ -523,11 +523,9 @@ async def test_display_map(year, melt_data: [pd.DataFrame], dict_data: dict):
         zoom_start=9, )
     geo_data = get_geodata()[0]
 
-    for i in range(len(dict_data)):
-        create_choropleth(geodata=geo_data, data=melt_data, index_data=catalog, year=year, name=catalog, iter=i,
-                          enable_this_layer=dict_data[i]).add_to(kld_map)
-    # fg2 = create_choropleth(geodata=geo_data, data=melt_data[1], index_data=dict_data[1], year=year, name=dict_data[1])
-    # kld_map.add_child(fg1).add_child(fg2)
+    create_choropleth(geodata=geo_data, data=melt_data[key], index_data=catalog[key], year=year, name=catalog[key],
+                      iter=0,
+                      enable_this_layer=dict_data[key]).add_to(kld_map)
 
     folium.LayerControl().add_to(kld_map)
     st_map = st_folium(kld_map)
@@ -540,25 +538,23 @@ async def test_display_map(year, melt_data: [pd.DataFrame], dict_data: dict):
 
 
 async def test_main():
-    # geodata, index_data = get_geodata()[0], get_geodata()[1]
-
     state_name = ''
     year = year_for_display()
-    melt_data = [i for i in get_melt(gen_type='data')]
-    dict_data = {i: False for i in get_melt(gen_type='names')}
+    melt_data, dict_data  = all_data()
 
     labels_keys = {e: i for e, i in enumerate(dict_data.keys())}
     radio = st.sidebar.radio('Фильтр', dict_data.keys(), key=1)
-    for i in dict_data:
+    key = 0
+    for n, i in enumerate(dict_data):
         if radio == i:
             dict_data[i] = True
+            key = n
         else:
             dict_data[i] = False
 
-    state_name = await test_display_map(year, melt_data, dict_data)
+    state_name = await test_display_map(year, melt_data, dict_data, key)
     state_name = test(state_name, melt_data[0])
 
-    #st.write(labels_keys)
     for e, i in enumerate(labels_keys):
         if radio == labels_keys[i]:
             display_facts(df=melt_data[e], year=year, state_name=state_name, var='Динамика',
@@ -566,28 +562,15 @@ async def test_main():
                           if state_name else f"Калининградской области за {year} г."}'''
                           )
 
-    # await radio_click(df=melt_data, dict_data=dict_data, year=year, state_name=state_name)
-
     await bar_chart(df=melt_data,
                     state_name=state_name, x='Год', y='Динамика', year=year, catalog=dict_data)
 
 
-# async def radio_click(df: List[pd.DataFrame], dict_data: dict, year: str, state_name: str):
-#     radio = st.sidebar.radio('Фильтр', dict_data.keys(), key=1)
-#     for i in dict_data:
-#         if radio == i:
-#             dict_data[i] = True
-#         else:
-#             dict_data[i] = False
-#
-#     labels_keys = {e: i for e, i in enumerate(dict_data)}
-#
-#     for e, i in enumerate(labels_keys):
-#         if radio == labels_keys[i]:
-#             display_facts(df=df[e], year=year, state_name=state_name, var='Динамика',
-#                           metric_title=f'''Население {f"городского округа {state_name} на {year} г."
-#                           if state_name else f"Калининградской области за {year} г."}'''
-#                           )
+@st.cache(persist=True, allow_output_mutation=True)
+def all_data() -> tuple[list[Any], dict]:
+    melt_data = [i for i in get_melt(gen_type='data')]
+    dict_data = {i: False for i in get_melt(gen_type='names')}
+    return melt_data, dict_data
 
 
 if __name__ == '__main__':
