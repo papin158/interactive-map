@@ -540,7 +540,9 @@ async def test_display_map(year, melt_data: [pd.DataFrame], dict_data: dict, key
 async def test_main():
     state_name = ''
     year = year_for_display()
-    melt_data, dict_data  = all_data()
+    melt_data, dict_data = all_data()
+    dict_data = sorted(dict_data.items(), key=lambda x: x[0])
+    dict_data = dict(dict_data)
 
     labels_keys = {e: i for e, i in enumerate(dict_data.keys())}
     radio = st.sidebar.radio('Фильтр', dict_data.keys(), key=1)
@@ -552,7 +554,9 @@ async def test_main():
         else:
             dict_data[i] = False
 
+
     state_name = await test_display_map(year, melt_data, dict_data, key)
+
     state_name = test(state_name, melt_data[0])
 
     for e, i in enumerate(labels_keys):
