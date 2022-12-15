@@ -554,7 +554,6 @@ async def test_main():
         else:
             dict_data[i] = False
 
-
     state_name = await test_display_map(year, melt_data, dict_data, key)
 
     state_name = test(state_name, melt_data[0])
