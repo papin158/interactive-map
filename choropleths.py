@@ -88,4 +88,10 @@ def hsv2rgb(hsv):
 
 generate_list_names_regions_kaliningrad = pd.read_csv(r"D:\Temp\pythonProject4\Данные csv\КалининградСтат - Данные - Об. розн. торговли без суб. мал. пред..csv")
 generate_list_names_regions_kaliningrad = generate_list_names_regions_kaliningrad.set_index('Городские округа:').columns.tolist()
-print(generate_list_names_regions_kaliningrad)
+#print(generate_list_names_regions_kaliningrad)
+
+setA = {1,2,3,4,5}
+setB = {3,4,5}
+
+setC = setA | setB
+print(setC)

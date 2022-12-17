@@ -21,10 +21,10 @@ def _get_geojson_modification() -> Tuple[gpd.GeoDataFrame, list]:
     years = np.array(pd.read_csv(f'{path_data}/{list_data[0]}').set_index(index_for_data).columns.tolist(),
                      dtype=np.str_)
 
-    new_list_data = [name[27:-4] for name in list_data]
+    new_list_data = [name[:-4] for name in list_data]
     for name in list_data:
         for s in geo_data['features']:
-            s['properties'][name[27:-4]] = {
+            s['properties'][name[:-4]] = {
                 i: pd.read_csv(f'{path_data}/{name}').set_index(index_for_data).astype('str').replace(r"[^-\d]", "0", regex=True).loc[
                     s['properties']['name'], i] for i in
                 years}
@@ -59,7 +59,7 @@ def _get_all_melt(*, var_name: str = None, value_name: str = None, gen_type: str
             yield get_data
     elif gen_type == "names":
         for name in list_data:
-            yield name[27:-4]
+            yield name[:-4]
 
 
 def _display_fraud_facts(df: pd.DataFrame, year, metric_title, var: str = None, state_name=None):
