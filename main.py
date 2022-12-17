@@ -32,9 +32,9 @@ async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=No
             df = df[df['Городские округа:'] == state_name]
         else:
             df = df[df['Год'] == year]
-        st.write(":heavy_minus_sign:" * round(130//2))
+        st.write(":heavy_minus_sign:" * round(130//5))
         if state_name != "Все":
-            st.write(f'Динамика изменения показателя"{radio}" городского округа {state_name}',)
+            st.write(f'Динамика изменения показателя "{radio}" городского округа {state_name}',)
             colms = st.columns(1)
             fig = go.Figure()
 
