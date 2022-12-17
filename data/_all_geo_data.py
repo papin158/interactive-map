@@ -35,7 +35,7 @@ def _get_geojson_modification() -> Tuple[gpd.GeoDataFrame, list]:
 def _get_all_melt(*, var_name: str = None, value_name: str = None, gen_type: str = None) -> pd.DataFrame:
     path_data = './Данные csv' if os.path.exists('./Данные csv') else '../Данные csv'
     index_for_data = 'Городские округа:'
-    list_data = os.listdir(path=path_data)
+    list_data = list(sorted(os.listdir(path=path_data)))
     years = np.array(pd.read_csv(f'{path_data}/{list_data[0]}').set_index(index_for_data).columns.tolist(),
                      dtype=np.str_)
     if not gen_type:

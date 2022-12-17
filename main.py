@@ -209,7 +209,6 @@ async def test_main():
                           metric_title=f'''{radio} {f"городского округа {state_name} на {year} г."
                           if state_name else f"Калининградской области за {year} г."}'''
                           )
-
     await bar_chart(df=melt_data,
                     state_name=state_name, x='Год', y='Динамика', year=year, catalog=dict_data, key=key, radio=radio)
     await display_table(radio=radio, state_name=state_name, on_key_table=on_key_table)
