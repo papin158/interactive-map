@@ -16,7 +16,7 @@ def __style_function_suburb__(feature, data, index_data, year: str):
         red, green, blue = colorsys.hsv_to_rgb(h, s, v)
 
         if np.float_(k1[year]) >= scale[n]:
-            return f'rgba({red},{green},{blue}, 0.45)'
+            return f'rgba({red},{green},{blue}, 0.6)'
 
 
 def _generate_choropleth(geodata, data, index_data, year, name, iter, enable_this_layer) -> folium.FeatureGroup:

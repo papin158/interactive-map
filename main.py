@@ -5,7 +5,6 @@ import folium
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objs as go
-import plotly.figure_factory as ff
 from streamlit_folium import st_folium
 import pandas as pd
 import numpy as np
@@ -24,39 +23,40 @@ st.markdown(f'''
 
 async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=None,
                     y=None, year=None, key=None, radio=None, ):
+    old_catalog = [k for k in catalog]
     catalog = [k for k in catalog.values()]
     if catalog[key]:
         df = df[key].sort_values(by='Год', ascending=True)
 
-        if state_name:
+        if state_name != "Все":
             df = df[df['Городские округа:'] == state_name]
         else:
             df = df[df['Год'] == year]
-
-        if state_name:
-            colms = st.columns(2)
+        st.write(":heavy_minus_sign:" * round(130//2))
+        if state_name != "Все":
+            st.write(f'Динамика изменения показателя"{radio}" городского округа {state_name}',)
+            colms = st.columns(1)
             fig = go.Figure()
 
-            with colms[0]:
-                st.plotly_chart(px.bar(data_frame=df, y=x, x=y, orientation='h').update_layout(xaxis_fixedrange=True, yaxis_fixedrange=True),
-                                config={'displayModeBar': False})
-
+            # with colms[0]:
+            #     st.plotly_chart(px.bar(data_frame=df, y=x, x=y, orientation='h').update_layout(xaxis_fixedrange=True, yaxis_fixedrange=True),
+            #                     config={'displayModeBar': False})
             fig.add_trace(go.Scatter(x=df[x],
                                      y=df[y],
                                      mode='lines',
                                      opacity=0.7,
-                                     showlegend=True,
+                                     #showlegend=True,
                                      legendrank=10,
                                      name=f'Динамика изменения численности населения городского округа {state_name}',
                                      ))
             fig.update_layout(legend_orientation="h", xaxis_fixedrange=True, yaxis_fixedrange=True)
 
-            with colms[1]:
+            with colms[0]:
                 config = {'displayModeBar': False}
                 st.plotly_chart(fig, config=config, use_container_width=True)
         else:
             df = df.sort_values(by=y)
-            st.write("Население Калининградской области по округам")
+            st.write(f'Сравнение показателя "{old_catalog[key]}" по округам за {year} г.')
             st.plotly_chart(
                             px.bar(data_frame=df, y='Городские округа:', x=y, orientation='h')\
                                 .update_xaxes(col='Динамика')\
@@ -74,7 +74,7 @@ def year_for_display(df: pd.DataFrame):
 
 
 def display_region_filter(df: pd.DataFrame, state_name: str):
-    state_list = [''] + list(df['Городские округа:'].unique())
+    state_list = ['Все'] + list(df['Городские округа:'].unique())
     # state_list.sort()
     state_index = state_list.index(state_name) if state_name and state_name in state_list else 0
     return st.sidebar.selectbox(label='Выберите городской округ из списка', options=state_list, index=state_index)
@@ -83,10 +83,11 @@ def display_region_filter(df: pd.DataFrame, state_name: str):
 async def display_table(radio, state_name, on_key_table):
     df = pd.read_csv(f'./Данные csv/{radio}.csv')
 
-    if state_name:
+    if state_name != "Все":
         df = df[df['Городские округа:'] == state_name]
 
     if on_key_table:
+        st.write(f"""Изменение показателя "{radio}" по годам""")
         st.table(df)
 
 
@@ -96,7 +97,7 @@ async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
         st.session_state.visibility = 'visible'
         st.session_state.disabled_1 = False
         st.session_state.disabled_2 = False
-        st.session_state.disabled_3 = False
+        st.session_state.disabled_3 = True
 
     st.sidebar.write(":heavy_minus_sign:" * 13)
     a = st.sidebar.columns(2)
@@ -106,10 +107,10 @@ async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
         var3 = st.empty()
 
     superKey = varZ.checkbox("Выбрать муниципалитет")
-    mat = var3.checkbox("Таблица")
+    mat = var3.checkbox("Таблица", value=True)
 
-    if not state_name:
-        state_name = 'г. Калининград'
+    if not superKey:
+        state_name = 'Все'
 
     if superKey:
 
@@ -133,14 +134,14 @@ async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
                     with a[an]:
                         if n <= data_len:
                             for i in range(no, n):
-                                if st.button(data_kld[i][0:4], key=f'{data_kld[i]}'):
+                                if st.button(data_kld[i][0:8], key=f'{data_kld[i]}'):
                                     state_name = data_kld[i]
 
                         no = n
                         n += round(data_len / max_columns)
 
                 if st.sidebar.button("Калининградская область"):
-                    state_name = ''
+                    state_name = 'Все'
             if new_radio == variable[1]:
                 state_name = display_region_filter(state_name=state_name, df=data_kld)
     return state_name, mat
@@ -174,7 +175,7 @@ async def test_display_map(year, melt_data: [pd.DataFrame], dict_data: dict, key
 
     folium.LayerControl().add_to(kld_map)
     st_map = st_folium(kld_map, width=1440)
-    state_name = ''
+    state_name = 'Все'
     if st_map['last_active_drawing']:
         state_name = st_map['last_active_drawing']['properties']['name']
 
@@ -182,12 +183,10 @@ async def test_display_map(year, melt_data: [pd.DataFrame], dict_data: dict, key
 
 
 async def test_main():
-    state_name = ''
+    state_name = 'Все'
     on_key_table = False
     melt_data, dict_data = all_data()
     year = year_for_display(melt_data[0])
-    dict_data = sorted(dict_data.items(), key=lambda x: x[0])
-    dict_data = dict(dict_data)
 
     labels_keys = {e: i for e, i in enumerate(dict_data.keys())}
     radio = st.sidebar.radio('Фильтр', dict_data.keys(), key=1)
@@ -207,7 +206,8 @@ async def test_main():
         if radio == labels_keys[i]:
             display_facts(df=melt_data[e], year=year, state_name=state_name, var='Динамика',
                           metric_title=f'''{radio} {f"городского округа {state_name} на {year} г."
-                          if state_name else f"Калининградской области за {year} г."}'''
+                          if state_name !="Все" else f"Калининградской области за {year} г."}''',
+                          minikey=radio
                           )
     await bar_chart(df=melt_data,
                     state_name=state_name, x='Год', y='Динамика', year=year, catalog=dict_data, key=key, radio=radio)

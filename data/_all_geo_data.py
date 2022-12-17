@@ -35,7 +35,7 @@ def _get_geojson_modification() -> Tuple[gpd.GeoDataFrame, list]:
 def _get_all_melt(*, var_name: str = None, value_name: str = None, gen_type: str = None) -> pd.DataFrame:
     path_data = './Данные csv' if os.path.exists('./Данные csv') else '../Данные csv'
     index_for_data = 'Городские округа:'
-    list_data = list(sorted(os.listdir(path=path_data)))
+    list_data = tuple(sorted(os.listdir(path=path_data)))
     years = np.array(pd.read_csv(f'{path_data}/{list_data[0]}').set_index(index_for_data).columns.tolist(),
                      dtype=np.str_)
     if not gen_type:
@@ -62,18 +62,23 @@ def _get_all_melt(*, var_name: str = None, value_name: str = None, gen_type: str
             yield name[:-4]
 
 
-def _display_fraud_facts(df: pd.DataFrame, year, metric_title, var: str = None, state_name=None):
+def _display_fraud_facts(df: pd.DataFrame, year, metric_title, var: str = None, state_name=None, minikey=None):
     if not var:
         var: str = 'Динамика'
 
     kpnm = df[(df['Год'] == year)]
     kpnm['Динамика'] = kpnm['Динамика'].replace(r"[\D]", "0", regex=True).astype(np.int32)
 
-    if state_name:
+    if state_name != "Все":
         kpnm = kpnm[kpnm['Городские округа:'] == state_name]
 
     # print(metric_title, '{:,}'.format(kpnm[var].sum()))
-    st.metric(metric_title, '{:,}'.format(kpnm[var].sum()))
+    import re
+    a = re.match(r"Средне", minikey)
+    if a:
+        st.metric(metric_title, '{:,}'.format(round(kpnm[var].sum()/len(kpnm['Городские округа:']))))
+    else:
+        st.metric(metric_title, '{:,}'.format(kpnm[var].sum()))
 
 # import time
 #

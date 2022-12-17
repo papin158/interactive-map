@@ -25,11 +25,11 @@ def get_melt(var_name: str = None, value_name: str = None, gen_type: str = None)
     return _all_geo_data._get_all_melt(var_name=var_name, value_name=value_name, gen_type=gen_type)
 
 
-def display_facts(df, year, metric_title, var: str = None, state_name=None):
+def display_facts(df, year, metric_title, var: str = None, state_name=None, minikey=None):
     """
     Выводит на экран статистику по региону или муниципалитету
     """
-    return _all_geo_data._display_fraud_facts(df, year, metric_title, var, state_name)
+    return _all_geo_data._display_fraud_facts(df, year, metric_title, var, state_name, minikey)
 
 
 # def get_tooltip(feature: gpd.GeoDataFrame, index_data: str, *, year: str = None):
