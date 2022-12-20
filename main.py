@@ -1,4 +1,5 @@
 import asyncio
+from io import BytesIO
 from typing import List, Any
 
 import folium
@@ -80,8 +81,16 @@ def display_region_filter(df: pd.DataFrame, state_name: str):
     return st.sidebar.selectbox(label='Выберите городской округ из списка', options=state_list, index=state_index)
 
 
-async def display_table(radio, state_name, on_key_table):
-    df = pd.read_csv(f'./Данные csv/{radio}.csv')
+async def display_table(radio, state_name, on_key_table, **kwargs):
+    download_folder = kwargs.get('download_folder',)
+    folder_name = kwargs.get('folder_name')
+
+    if not download_folder:
+        download_folder = 'Данные скачивания таблиц'
+    if not folder_name:
+        folder_name = "Данные csv"
+
+    df = pd.read_csv(f'./{folder_name}/{radio}.csv')
 
     if state_name != "Все":
         df = df[df['Городские округа:'] == state_name]
@@ -89,6 +98,11 @@ async def display_table(radio, state_name, on_key_table):
     if on_key_table:
         st.write(f"""Изменение показателя "{radio}" по годам""")
         st.table(df)
+        with pd.ExcelWriter(f"./{download_folder}/{radio}.xlsx", engine='xlsxwriter') as writer:
+            df.to_excel(writer, index=False, engine='xlsxwriter', sheet_name=radio[0:30] if len(radio) > 30 else radio)
+
+        with open(f"./{download_folder}/{radio}.xlsx", 'rb') as f:
+            st.download_button('Скачать таблицу', f, file_name=f'{radio}.xlsx')
 
 
 async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:

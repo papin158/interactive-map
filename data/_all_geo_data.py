@@ -1,4 +1,5 @@
 import os
+import re
 from typing import Tuple
 
 import pandas as pd
@@ -23,11 +24,14 @@ def _get_geojson_modification() -> Tuple[gpd.GeoDataFrame, list]:
 
     new_list_data = [name[:-4] for name in list_data]
     for name in list_data:
-        for s in geo_data['features']:
-            s['properties'][name[:-4]] = {
-                i: pd.read_csv(f'{path_data}/{name}').set_index(index_for_data).astype('str').replace(r"[^-\d]", "0", regex=True).loc[
-                    s['properties']['name'], i] for i in
-                years}
+        csv = re.search(r'\w+\.csv$', name)
+        # xlsx = re.search(r'\w+\.xlsx$', name)
+        if csv:
+            for s in geo_data['features']:
+                s['properties'][name[:-4]] = {
+                    i: pd.read_csv(f'{path_data}/{name}').set_index(index_for_data).astype('str').replace(r"[^-\d]", "0", regex=True).loc[
+                        s['properties']['name'], i] for i in
+                    years}
     del years, list_data, index_for_data, path_data
     return geo_data, new_list_data
 
@@ -73,20 +77,29 @@ def _display_fraud_facts(df: pd.DataFrame, year, metric_title, var: str = None, 
         kpnm = kpnm[kpnm['Городские округа:'] == state_name]
 
     # print(metric_title, '{:,}'.format(kpnm[var].sum()))
-    import re
+
     a = re.match(r"Средне", minikey)
     if a:
         st.metric(metric_title, '{:,}'.format(round(kpnm[var].sum()/len(kpnm['Городские округа:']))))
     else:
         st.metric(metric_title, '{:,}'.format(kpnm[var].sum()))
 
-# import time
+
+# def test_time(func):
+#     import time
 #
-# start = time.time()
+#     def wrapper(*args, **kwargs):
+#         st = time.time()
+#         res = func(*args, **kwargs)
+#         et = time.time()
+#         dt = et-st
+#         print(f"Время работы программы: {dt}")
+#         return res
+#
+#     return wrapper
+#
 # data = [i for i in _get_all_melt(gen_type='data')]
 # name_files = [i for i in _get_all_melt(gen_type='names')]
-# #print(data[2])
-# _display_fraud_facts(data[2], '2022', "Жопа")
-# end = time.time()
-# total = end - start
-# print(total)
+# display_facts = test_time(_display_fraud_facts)
+# res = display_facts(data[2], '2022', "Жопа")
+# #print(res)

@@ -1,59 +1,33 @@
-import altair as alt
-import branca
-import folium
+import os
+import re
+
 import pandas as pd
 
-two_charts_template = """
-<!DOCTYPE html>
-<html>
-<head>
-  <script src="https://cdn.jsdelivr.net/npm/vega@{vega_version}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@{vegalite_version}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@{vegaembed_version}"></script>
-</head>
-<body>
+# excel = pd.read_excel("./23110000100030200002_Численность_постоянного_населения_на_1_января.xlsx")
+# csv = pd.read_csv("./Данные csv/Естестественное движение населения.csv")
+# lst = [excel, csv]
+path="./test_dir/"
+list_data = os.listdir(path=path)
 
-<div id="vis1"></div>
-<div id="vis2"></div>
+for i in list_data:
+    a = re.search(r'^[^~$]\w+.+\.xlsx$', i)#re.search(r'[^~$]\w*', i)#(r'[^\w]\w+\.xlsx$', i)
+    # print(i)
+    if a:
+        a = pd.read_excel(f'{path}{i}', sheet_name=i, na_values=['0'])
+        print(a)
 
-<script type="text/javascript">
-  vegaEmbed('#vis1', {spec1}).catch(console.error);
-  vegaEmbed('#vis2', {spec2}).catch(console.error);
-</script>
-</body>
-</html>
-"""
+def foo(**kwargs):
+    download_folder = kwargs.get('download_folder', )
+    folder_name = kwargs.get('folder_name')
 
+    if not download_folder:
+        download_folder = 'Данные скачивания таблиц'
+    if not folder_name:
+        folder_name = "Данные csv"
 
-df = pd.DataFrame({'x': range(5), 'y': range(5)})
+    df = pd.read_csv(f'./{folder_name}/Численность населения.csv')
 
-chart1 = alt.Chart(df).mark_point().encode(x='x', y='y')
-chart2 = alt.Chart(df).mark_line().encode(x='x', y='y')
+    with pd.ExcelWriter(f"./{download_folder}/Численность населения.xlsx", engine='xlsxwriter') as writer:
+        df.to_excel(writer, index=False, engine='xlsxwriter', sheet_name='Численность населения'[0:30] if len('Численность населения') > 30 else 'Численность населения')
 
-with open('charts.html', 'w') as f:
-    f.write(two_charts_template.format(
-        vega_version=alt.VEGA_VERSION,
-        vegalite_version=alt.VEGALITE_VERSION,
-        vegaembed_version=alt.VEGAEMBED_VERSION,
-        spec1=chart1.to_json(indent=None),
-        spec2=chart2.to_json(indent=None),
-    ))
-
-html_file = open('charts.html', 'r', encoding='utf-8')
-charts_code = html_file.read()
-
-# In case a file is not needed a direct assignment can be used
-# charts_code = two_charts_template.format(
-#            vega_version=alt.VEGA_VERSION,
-#            vegalite_version=alt.VEGALITE_VERSION,
-#            vegaembed_version=alt.VEGAEMBED_VERSION,
-#            spec1=chart1.to_json(indent=None),
-#            spec2=chart2.to_json(indent=None),
-#        )
-a_map = folium.Map()
-
-iframe = branca.element.IFrame(html=charts_code, width=1500, height=400)
-popup = folium.Popup(iframe, max_width=2000)
-
-folium.Marker([51.5,-0.11], popup=popup).add_to(a_map)
-a_map
+foo()
