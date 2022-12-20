@@ -1,5 +1,4 @@
 import asyncio
-from io import BytesIO
 from typing import List, Any
 
 import folium
@@ -33,9 +32,10 @@ async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=No
             df = df[df['Городские округа:'] == state_name]
         else:
             df = df[df['Год'] == year]
-        st.write(":heavy_minus_sign:" * round(130//5))
+
+        st.write(":heavy_minus_sign:" * round(130 // 5))
         if state_name != "Все":
-            st.write(f'Динамика изменения показателя "{radio}" городского округа {state_name}',)
+            st.write(f'Динамика изменения показателя "{radio}" городского округа {state_name}', )
             colms = st.columns(1)
             fig = go.Figure()
 
@@ -46,25 +46,38 @@ async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=No
                                      y=df[y],
                                      mode='lines',
                                      opacity=0.7,
-                                     #showlegend=True,
+                                     # showlegend=True,
                                      legendrank=10,
                                      name=f'Динамика изменения численности населения городского округа {state_name}',
                                      ))
             fig.update_layout(legend_orientation="h", xaxis_fixedrange=True, yaxis_fixedrange=True)
+            fig.write_html(r"./file.html")
 
             with colms[0]:
                 config = {'displayModeBar': False}
                 st.plotly_chart(fig, config=config, use_container_width=True)
+
         else:
+            df.loc[len(df.index)] = ["Среднее значение по Калининградской области", year,
+                                     df['Динамика'].sum() / len(df['Динамика'])]
+
             df = df.sort_values(by=y)
             st.write(f'Сравнение показателя "{old_catalog[key]}" по округам за {year} г.')
-            st.plotly_chart(
-                            px.bar(data_frame=df, y='Городские округа:', x=y, orientation='h')\
-                                .update_xaxes(col='Динамика')\
-                                .update_layout(xaxis_fixedrange=True, yaxis_fixedrange=True),
-                            config={'displayModeBar': False}
-                            )
 
+            fig = px.bar(data_frame=df, y='Городские округа:', x=y, orientation='h', text='Городские округа:') \
+                .update_xaxes(col='Динамика').update_yaxes(visible=False, showticklabels=False) \
+                .update_layout(xaxis_fixedrange=True, yaxis_fixedrange=True, height=600) \
+                .update_traces(textfont_size=12, textangle=0, textposition="outside", cliponaxis=False)
+
+            fig.write_html("./file.html")
+
+            st.plotly_chart(fig,
+                            config={'displayModeBar': False},
+                            use_container_width=True,
+                            height=600
+                            )
+        with open("./file.html") as f:
+            st.download_button("Скачать график", f, mime='text/html')
 
 
 def year_for_display(df: pd.DataFrame):
@@ -82,7 +95,7 @@ def display_region_filter(df: pd.DataFrame, state_name: str):
 
 
 async def display_table(radio, state_name, on_key_table, **kwargs):
-    download_folder = kwargs.get('download_folder',)
+    download_folder = kwargs.get('download_folder', )
     folder_name = kwargs.get('folder_name')
 
     if not download_folder:
@@ -102,7 +115,8 @@ async def display_table(radio, state_name, on_key_table, **kwargs):
             df.to_excel(writer, index=False, engine='xlsxwriter', sheet_name=radio[0:30] if len(radio) > 30 else radio)
 
         with open(f"./{download_folder}/{radio}.xlsx", 'rb') as f:
-            st.download_button('Скачать таблицу', f, file_name=f'{radio}.xlsx')
+            st.download_button('Скачать таблицу', f,
+                               file_name=f'{radio}{"" if state_name == "Все" else f"_{state_name}"}.xlsx')
 
 
 async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
@@ -171,7 +185,10 @@ async def test_display_map(year, melt_data: [pd.DataFrame], dict_data: dict, key
     kld_map = folium.Map(
         location=[54.74726381693468, 21.47545575464152],
         zoom_start=9,
-        width=1440
+        width=1440,
+        scrollWheelZoom=False,
+        min_zoom=7,
+        max_zoom=10,
         # tiles='Yandex',
         # tiles=r'https://api-maps.yandex.ru/2.1/?apikey=d5833253-f0e7-44f9-a464-6d165eaa39db&lang=ru_RU',
         # API_key = 'https://api-maps.yandex.ru/2.1/?apikey=d5833253-f0e7-44f9-a464-6d165eaa39db&lang=ru_RU',
@@ -186,8 +203,7 @@ async def test_display_map(year, melt_data: [pd.DataFrame], dict_data: dict, key
                       iter=0,
                       enable_this_layer=dict_data[key]).add_to(kld_map)
 
-
-    folium.LayerControl().add_to(kld_map)
+    # folium.LayerControl().add_to(kld_map)
     st_map = st_folium(kld_map, width=1440)
     state_name = 'Все'
     if st_map['last_active_drawing']:
@@ -220,7 +236,7 @@ async def test_main():
         if radio == labels_keys[i]:
             display_facts(df=melt_data[e], year=year, state_name=state_name, var='Динамика',
                           metric_title=f'''{radio} {f"городского округа {state_name} на {year} г."
-                          if state_name !="Все" else f"Калининградской области за {year} г."}''',
+                          if state_name != "Все" else f"Калининградской области за {year} г."}''',
                           minikey=radio
                           )
     await bar_chart(df=melt_data,
