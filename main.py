@@ -8,7 +8,6 @@ import plotly.graph_objs as go
 from streamlit_folium import st_folium
 import pandas as pd
 import numpy as np
-from htbuilder import hr
 
 from loader import get_geodata, get_melt, display_facts, create_choropleth, get_mouse_position, footer
 
