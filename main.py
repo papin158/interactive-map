@@ -234,7 +234,7 @@ async def test_main():
     await bar_chart(df=melt_data,
                     state_name=state_name, x='Год', y='Динамика', year=year, catalog=dict_data, key=key, radio=radio)
     await display_table(radio=radio, state_name=state_name, on_key_table=on_key_table)
-    footer()
+    #footer()
 
 
 @st.cache(persist=True, allow_output_mutation=True)
