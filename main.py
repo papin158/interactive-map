@@ -17,6 +17,15 @@ st.markdown(f'''
     <style>
         section[data-testid="stSidebar"] .css-ng1t4o {{width: 12rem;}}
         section[data-testid="stSidebar"] .css-1d391kg {{width: 12rem;}}
+        footer{{visibility: hidden;}}
+        footer:after
+        {{
+            content: Создано с душой ©ZF RANEPA;
+            display: block;
+            position: relative;
+            padding: 5px;
+            top: 3px;
+        }}
     </style>
 ''', unsafe_allow_html=True)
 
