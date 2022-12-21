@@ -4,6 +4,7 @@ import pandas as pd
 
 from data import _all_geo_data
 from choropleths import _choropleth, _mouse_position
+from HTML.Footer import __customize_footer_streamlit__
 
 
 def get_geodata():
@@ -49,3 +50,6 @@ def create_choropleth(*, geodata: gpd.GeoDataFrame, data: pd.DataFrame, index_da
     Создаёт и возвращает пользователю уже сгенерированный слой
     """
     return _choropleth._generate_choropleth(geodata=geodata, data=data, index_data=index_data, year=year, name=name, iter=iter, enable_this_layer=enable_this_layer)
+
+def footer():
+    return __customize_footer_streamlit__.footer()

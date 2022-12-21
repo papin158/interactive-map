@@ -8,26 +8,9 @@ import plotly.graph_objs as go
 from streamlit_folium import st_folium
 import pandas as pd
 import numpy as np
+from htbuilder import hr
 
-from loader import get_geodata, get_melt, display_facts, create_choropleth, get_mouse_position
-
-st.set_page_config(page_title="Карта", layout="wide")
-
-st.markdown(f'''
-    <style>
-        section[data-testid="stSidebar"] .css-ng1t4o {{width: 12rem;}}
-        section[data-testid="stSidebar"] .css-1d391kg {{width: 12rem;}}
-        footer{{visibility: hidden;}}
-        footer:after
-        {{
-            content: Создано с душой ©ZF RANEPA;
-            display: block;
-            position: relative;
-            padding: 5px;
-            top: 3px;
-        }}
-    </style>
-''', unsafe_allow_html=True)
+from loader import get_geodata, get_melt, display_facts, create_choropleth, get_mouse_position, footer
 
 
 async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=None,
@@ -143,7 +126,7 @@ async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
     with a[1]:
         var3 = st.empty()
 
-    superKey = varZ.checkbox("Выбрать муниципалитет")
+    superKey = varZ.checkbox("Выбрать регион")
     mat = var3.checkbox("Таблица", value=True)
 
     if not superKey:
@@ -251,6 +234,7 @@ async def test_main():
     await bar_chart(df=melt_data,
                     state_name=state_name, x='Год', y='Динамика', year=year, catalog=dict_data, key=key, radio=radio)
     await display_table(radio=radio, state_name=state_name, on_key_table=on_key_table)
+    footer()
 
 
 @st.cache(persist=True, allow_output_mutation=True)
