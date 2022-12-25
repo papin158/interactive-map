@@ -8,8 +8,11 @@ import plotly.graph_objs as go
 from streamlit_folium import st_folium
 import pandas as pd
 import numpy as np
+from htbuilder import hr, styles
+from htbuilder.units import percent, pxx
 
-from loader import get_geodata, get_melt, display_facts, create_choropleth, get_mouse_position, footer
+from loader import get_geodata, get_melt, display_facts, create_choropleth, get_mouse_position, footer, \
+    get_radio_switch, get_path_data
 
 
 async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=None,
@@ -24,7 +27,7 @@ async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=No
         else:
             df = df[df['Год'] == year]
 
-        st.write(":heavy_minus_sign:" * round(130 // 5))
+        st.markdown(f'{hr(style=styles(display="block", margin=pxx(8, 8, "auto", "auto"),border_style="inset",border_width=pxx(2)))}', unsafe_allow_html=True)
         if state_name != "Все":
             st.write(f'Динамика изменения показателя "{radio}" городского округа {state_name}', )
             colms = st.columns(1)
@@ -94,7 +97,13 @@ async def display_table(radio, state_name, on_key_table, **kwargs):
     if not folder_name:
         folder_name = "Данные csv"
 
-    df = pd.read_csv(f'./{folder_name}/{radio}.csv')
+    list_path_data = [i for i in get_path_data(folder_name)]
+    name_data = [i.name for i in list_path_data]
+
+    df = pd.DataFrame()
+    for n, i in enumerate(name_data):
+        if i[:-4] == radio:
+            df = pd.read_csv(f'./{list_path_data[n]}')
 
     if state_name != "Все":
         df = df[df['Городские округа:'] == state_name]
@@ -109,6 +118,10 @@ async def display_table(radio, state_name, on_key_table, **kwargs):
             st.download_button('Скачать таблицу', f,
                                file_name=f'{radio}{"" if state_name == "Все" else f"_{state_name}"}.xlsx')
 
+        st.write('''к - данные не публикуются в целях обеспечения конфиденциальности первичных статистических данных, 
+        полученных от организаций, в соответствии с Федеральным законом от 29.11.07 № 282-ФЗ "Об официальном 
+        статистическом учете и системе государственной статистики в Российской Федерации" (ст.4, п.5; ст.9, п.1).''')
+
 
 async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
     if 'disabled_' not in st.session_state:
@@ -118,7 +131,9 @@ async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
         st.session_state.disabled_2 = False
         st.session_state.disabled_3 = True
 
-    st.sidebar.write(":heavy_minus_sign:" * 13)
+    st.sidebar.markdown(
+        f'{hr(style=styles(display="block", margin=pxx(8, 8, "auto", "auto"), border_style="inset", border_width=pxx(2)))}',
+        unsafe_allow_html=True)
     a = st.sidebar.columns(2)
     with a[0]:
         varZ = st.empty()
@@ -153,7 +168,7 @@ async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
                     with a[an]:
                         if n <= data_len:
                             for i in range(no, n):
-                                if st.button(data_kld[i][0:8], key=f'{data_kld[i]}'):
+                                if st.button(data_kld[i], key=f'{data_kld[i]}'):
                                     state_name = data_kld[i]
 
                         no = n
@@ -181,10 +196,12 @@ async def test_display_map(year, melt_data: [pd.DataFrame], dict_data: dict, key
         min_zoom=7,
         max_zoom=10,
         # tiles='Yandex',
-        # tiles=r'https://api-maps.yandex.ru/2.1/?apikey=d5833253-f0e7-44f9-a464-6d165eaa39db&lang=ru_RU',
+        # # tiles=r'https://api-maps.yandex.ru/2.1/?apikey=d5833253-f0e7-44f9-a464-6d165eaa39db&lang=ru_RU',
         # API_key = 'https://api-maps.yandex.ru/2.1/?apikey=d5833253-f0e7-44f9-a464-6d165eaa39db&lang=ru_RU',
         # attr='Yandex'
     )
+
+    kld_map.add_child(folium.TileLayer('openstreetmap', attr=".", show=False, overlay=True))
 
     kld_map.add_child(get_mouse_position())
 
@@ -194,7 +211,7 @@ async def test_display_map(year, melt_data: [pd.DataFrame], dict_data: dict, key
                       iter=0,
                       enable_this_layer=dict_data[key]).add_to(kld_map)
 
-    # folium.LayerControl().add_to(kld_map)
+    folium.LayerControl().add_to(kld_map)
     st_map = st_folium(kld_map, width=1440)
     state_name = 'Все'
     if st_map['last_active_drawing']:
@@ -210,30 +227,35 @@ async def test_main():
     year = year_for_display(melt_data[0])
 
     labels_keys = {e: i for e, i in enumerate(dict_data.keys())}
-    radio = st.sidebar.radio('Фильтр', dict_data.keys(), key=1)
+
+    a = get_radio_switch(path='./Данные csv/')
+    radio = st.sidebar.radio('Фильтры', a.keys(), key=2, horizontal=True)
+    res = st.sidebar.radio(radio, a[radio])
+
     key = 0
     for n, i in enumerate(dict_data):
-        if radio == i:
+        if res == i:
             dict_data[i] = True
             key = n
         else:
             dict_data[i] = False
 
     state_name = await test_display_map(year, melt_data, dict_data, key)
-    temp = await test(state_name, melt_data[0], radio)
+    temp = await test(state_name, melt_data[0], res)
     if isinstance(temp, tuple):
         state_name, on_key_table = temp
+
     for e, i in enumerate(labels_keys):
-        if radio == labels_keys[i]:
+        if res == labels_keys[i]:
             display_facts(df=melt_data[e], year=year, state_name=state_name, var='Динамика',
-                          metric_title=f'''{radio} {f"городского округа {state_name} на {year} г."
+                          metric_title=f'''{res} {f"городского округа {state_name} на {year} г."
                           if state_name != "Все" else f"Калининградской области за {year} г."}''',
-                          minikey=radio
+                          minikey=res
                           )
     await bar_chart(df=melt_data,
-                    state_name=state_name, x='Год', y='Динамика', year=year, catalog=dict_data, key=key, radio=radio)
-    await display_table(radio=radio, state_name=state_name, on_key_table=on_key_table)
-    #footer()
+                    state_name=state_name, x='Год', y='Динамика', year=year, catalog=dict_data, key=key, radio=res)
+    await display_table(radio=res, state_name=state_name, on_key_table=on_key_table)
+    footer()
 
 
 @st.cache(persist=True, allow_output_mutation=True)

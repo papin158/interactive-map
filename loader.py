@@ -5,6 +5,7 @@ import pandas as pd
 from data import _all_geo_data
 from choropleths import _choropleth, _mouse_position
 from HTML.Footer import __customize_footer_streamlit__
+from tables import tables
 
 
 def get_geodata():
@@ -53,3 +54,15 @@ def create_choropleth(*, geodata: gpd.GeoDataFrame, data: pd.DataFrame, index_da
 
 def footer():
     return __customize_footer_streamlit__.footer()
+
+
+def get_radio_switch(path):
+    """
+    Воссоздаёт переключатели в боковой панели
+
+    :param path: = обязательная директория.
+    """
+    return tables.__get_derictories(path=path)
+
+def get_path_data(path):
+    return _all_geo_data.get_all_data(path)

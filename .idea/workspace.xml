@@ -5,13 +5,65 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9050ac45-018f-4cd1-a56e-ebbf3dc5bd67" name="Changes" comment="Add">
-      <change afterPath="$PROJECT_DIR$/HTML/Footer/__customize_footer_streamlit__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HTML/Footer/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HTML/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HTML/Body/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HTML/Header/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tables/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tables/tables.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/0/Ввод в действие жилых домов.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/0/Воспитанники дошкольн. образ.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/0/Граждан польз. соц поддерж.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/0/Дети 1-6 лет.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/0/Дети 5 - 18 лет.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/1/Естест. движение насел.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/1/Инвестиции в основной капитал.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/1/Кол-во организаций.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/1/Колич выд разреш. на ввод в экс.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/2/Колич. выданных разреш. на стро.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/2/Коровы.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/2/Крупный рогатый скот.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/2/Нал. осн. фондов по комм.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/3/Нал. осн. фондов по некомм.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/3/Нуждающиеся в жилых помещениях.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/3/Об. общест. питания без суб. ма.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/3/Об. розн. торговли без суб. мал.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/4/Общее число семей, получавших с.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/4/Объём товаров.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/4/Производство молока  скот.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/5/Производство яиц  скот.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/5/Птица и скот в весе.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/5/Соц поддержка по оплате жил. по.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/5/Среднемес. зарплата.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/6/Среднеспис. числ. работников ор.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/6/Сумма начисленных субсидий на о.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/6/Численность населения.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/6/Число семей, получивших жилые п.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/Зерно злаковых и бобовых культу.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/Картофель.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/Крупный рогатый скот.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/Поголовье скота.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/Реализация молока.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Данные csv/Скот и птица.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/Footer/__customize_footer_streamlit__.py" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/Footer/__customize_footer_streamlit__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/choropleths/_choropleth.py" beforeDir="false" afterPath="$PROJECT_DIR$/choropleths/_choropleth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/_all_geo_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/_all_geo_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv.7z" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv.7z" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Естестественное движение населения.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/1/Естестественное движение населения.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Миграционное движение.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/2/Миграционное движение.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Оборот общественного питания без субъектов малого предпринимательства.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/3/Оборот общественного питания без субъектов малого предпринимательства.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Оборот розничной торговли без субъектов малого предпринимательства.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/4/Оборот розничной торговли без субъектов малого предпринимательства.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Общая площадь жилых помещений.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/4/Общая площадь жилых помещений.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Среднемесячная зарплата.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/5/Среднемесячная зарплата.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Среднесписочное число работников организаций.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/6/Среднесписочное число работников организаций.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Численность населения.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Естестественное движение населения.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Естестественное движение населения.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Среднемесячная зарплата.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Среднемесячная зарплата.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Численность населения.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Численность населения.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные.7z" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +266,10 @@
       <workItem from="1671553864349" duration="4286000" />
       <workItem from="1671559370827" duration="11626000" />
       <workItem from="1671571290753" duration="1401000" />
-      <workItem from="1671640738979" duration="3983000" />
+      <workItem from="1671640738979" duration="13674000" />
+      <workItem from="1671743515483" duration="6150000" />
+      <workItem from="1671800296842" duration="16467000" />
+      <workItem from="1671885921263" duration="37930000" />
     </task>
     <task id="LOCAL-00001" summary="Add">
       <created>1670856617057</created>
@@ -391,7 +446,35 @@
       <option name="project" value="LOCAL" />
       <updated>1671641551262</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Add">
+      <created>1671644938025</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1671644938025</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Add">
+      <created>1671644954259</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1671644954259</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Add">
+      <created>1671644990961</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1671644990961</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Add">
+      <created>1671645002599</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1671645002599</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,7 +526,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject4$all_data.coverage" NAME="all_data Coverage Results" MODIFIED="1671020505821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/pythonProject4$_all_geo_data__1_.coverage" NAME="_all_geo_data (1) Coverage Results" MODIFIED="1671231719161" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
-    <SUITE FILE_PATH="coverage/pythonProject4$test.coverage" NAME="test Coverage Results" MODIFIED="1671562921041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject4$test.coverage" NAME="test Coverage Results" MODIFIED="1671920828461" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pythonProject4$choropleths.coverage" NAME="choropleths Coverage Results" MODIFIED="1671220336545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pythonProject4$pytest_in__all_geo_data_py.coverage" NAME="pytest in _all_geo_data.py Coverage Results" MODIFIED="1671404183366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/pythonProject4$_tooltips.coverage" NAME="_tooltips Coverage Results" MODIFIED="1671278790858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/choropleths" />

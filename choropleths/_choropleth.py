@@ -1,4 +1,6 @@
-import folium, colorsys, choropleths._tooltips
+import choropleths._tooltips
+import colorsys
+import folium
 import numpy as np
 
 
