@@ -225,6 +225,7 @@ async def test_main():
     on_key_table = False
     melt_data, dict_data, geodata, path_data = all_data()
     year = year_for_display(melt_data[0])
+    dict_data = dict(sorted(dict_data.items(), key=lambda x: x[0]))
 
     labels_keys = {e: i for e, i in enumerate(dict_data.keys())}
 
