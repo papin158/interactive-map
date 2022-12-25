@@ -14,4 +14,6 @@ def __get_derictories(path) -> dict:
     if other_files['Другое']:
         directories |= other_files
 
+    directories = dict(sorted(directories.items(), key=lambda x: x[0]))
+
     return directories
