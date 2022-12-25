@@ -27,7 +27,9 @@ async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=No
         else:
             df = df[df['Год'] == year]
 
-        st.markdown(f'{hr(style=styles(display="block", margin=pxx(8, 8, "auto", "auto"),border_style="inset",border_width=pxx(2)))}', unsafe_allow_html=True)
+        st.markdown(
+            f'{hr(style=styles(display="block", margin=pxx(8, 8, "auto", "auto"), border_style="inset", border_width=pxx(2)))}',
+            unsafe_allow_html=True)
         if state_name != "Все":
             st.write(f'Динамика изменения показателя "{radio}" городского округа {state_name}', )
             colms = st.columns(1)
@@ -81,7 +83,7 @@ def year_for_display(df: pd.DataFrame):
     return year
 
 
-def display_region_filter(df: pd.DataFrame, state_name: str,):
+def display_region_filter(df: pd.DataFrame, state_name: str, ):
     state_list = ['Все'] + list(df['Городские округа:'].unique())
     # state_list.sort()
     state_index = state_list.index(state_name) if state_name and state_name in state_list else 0
@@ -225,9 +227,10 @@ async def test_main():
     on_key_table = False
     melt_data, dict_data, geodata, path_data = all_data()
     year = year_for_display(melt_data[0])
-    #dict_data = dict(sorted(dict_data.items(), key=lambda x: x[0]))
-
-    labels_keys = {e: i for e, i in enumerate(dict_data.keys())}
+    # dict_data = dict(sorted(dict_data.items(), key=lambda x: x[0]))
+    labels_keys = list(sorted(dict_data))
+    # st.write(labels_keys)
+    # labels_keys = {e: i for e, i in enumerate(dict_data.keys())}
 
     a = get_radio_switch(path='./Данные csv/')
     radio = st.sidebar.radio('Фильтры', a.keys(), key=2, horizontal=True)
@@ -247,7 +250,7 @@ async def test_main():
         state_name, on_key_table = temp
 
     for e, i in enumerate(labels_keys):
-        if res == labels_keys[i]:
+        if res == labels_keys[e]:
             display_facts(df=melt_data[e], year=year, state_name=state_name, var='Динамика',
                           metric_title=f'''{res} {f"городского округа {state_name} на {year} г."
                           if state_name != "Все" else f"Калининградской области за {year} г."}''',
@@ -265,6 +268,7 @@ def all_data() -> tuple[list[Any], dict, dict, list]:
     path_data = [i for i in get_path_data(path)]
     geodata, dict_data = get_geodata(path_data)
     melt_data = [i for i in get_melt(gen_type='data', path_data=path_data)]
+    st.write(dict_data)
     dict_data = {i: False for i in dict_data}
     return melt_data, dict_data, geodata, path_data
 
