@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9050ac45-018f-4cd1-a56e-ebbf3dc5bd67" name="Changes" comment="Add">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/_all_geo_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/_all_geo_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +213,7 @@
       <workItem from="1671800296842" duration="16467000" />
       <workItem from="1671885921263" duration="41595000" />
       <workItem from="1671931443022" duration="86000" />
-      <workItem from="1671959407577" duration="1883000" />
+      <workItem from="1671959407577" duration="2774000" />
     </task>
     <task id="LOCAL-00001" summary="Add">
       <created>1670856617057</created>
@@ -513,7 +509,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671931522861</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Add">
+      <created>1671961698096</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1671961698096</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
