@@ -229,6 +229,7 @@ async def test_main():
     year = year_for_display(melt_data[0])
     # dict_data = dict(sorted(dict_data.items(), key=lambda x: x[0]))
     labels_keys = list(sorted(dict_data))
+    dict_data = {i: False for i in labels_keys}
     # st.write(labels_keys)
     # labels_keys = {e: i for e, i in enumerate(dict_data.keys())}
 
@@ -268,8 +269,6 @@ def all_data() -> tuple[list[Any], dict, dict, list]:
     path_data = [i for i in get_path_data(path)]
     geodata, dict_data = get_geodata(path_data)
     melt_data = [i for i in get_melt(gen_type='data', path_data=path_data)]
-    st.write(dict_data)
-    dict_data = {i: False for i in dict_data}
     return melt_data, dict_data, geodata, path_data
 
 
