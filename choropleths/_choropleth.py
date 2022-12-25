@@ -11,8 +11,6 @@ def __style_function_suburb__(feature, data, index_data, year: str):
     data = data[(data['Год'] == year)]['Динамика']
     scale = (data.quantile((0.0, 0.1, 0.3, 0.4, 0.5, 0.6, 0.7, 0.89, 0.98, 1.0))).tolist()
 
-    streamlit.write(k1[year])
-
     for n, e in list(enumerate(scale)):
 
         blue = 183
