@@ -152,7 +152,7 @@ async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
         new_radio = st.sidebar.radio("", variable, horizontal=True)
 
         if new_radio:
-            if new_radio == variable[0]:
+            if new_radio == variable[1]:
                 data_kld = list(data_kld['Городские округа:'].unique())
                 data_len = len(data_kld)
 
@@ -176,7 +176,7 @@ async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
 
                 if st.sidebar.button("Калининградская область"):
                     state_name = 'Все'
-            if new_radio == variable[1]:
+            if new_radio == variable[0]:
                 state_name = display_region_filter(state_name=state_name, df=data_kld)
     return state_name, mat
 
