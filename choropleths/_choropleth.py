@@ -1,3 +1,5 @@
+import streamlit
+
 import choropleths._tooltips
 import colorsys
 import folium
@@ -9,18 +11,19 @@ def __style_function_suburb__(feature, data, index_data, year: str):
     data = data[(data['Год'] == year)]['Динамика']
     scale = (data.quantile((0.0, 0.1, 0.3, 0.4, 0.5, 0.6, 0.7, 0.89, 0.98, 1.0))).tolist()
 
-    for n, e in reversed(list(enumerate(scale))):
+    for n, e in list(enumerate(scale)):
+        streamlit.write(n, e, scale[n], k1[year])
         blue = 183
         green = 86
         red = 24
 
         h, s, v = colorsys.rgb_to_hsv(red, green, blue)
 
-        # s /= 100
-        s -= n * 0.1
+        s /= 100
+        s += n * 0.1
         red, green, blue = colorsys.hsv_to_rgb(h, s, v)
 
-        if np.float_(k1[year]) >= scale[n]:
+        if np.float_(k1[year]) <= scale[n]:
             return f'rgba({red},{green},{blue}, 0.6)'
 
 
