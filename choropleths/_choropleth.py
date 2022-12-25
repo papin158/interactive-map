@@ -22,7 +22,6 @@ def __style_function_suburb__(feature, data, index_data, year: str):
         s /= 100
         s += n * 0.1
         red, green, blue = colorsys.hsv_to_rgb(h, s, v)
-        streamlit.write(n, e, scale[n], k1[year], (red, green, blue))
 
         if np.float_(k1[year]) <= scale[n]:
             return f'rgba({red},{green},{blue}, 0.6)'
