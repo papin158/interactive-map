@@ -27,7 +27,7 @@ def _get_geojson_modification(list_path_data: list):
     for n, name in enumerate(list_data):
             for s in geo_data['features']:
                 s['properties'][name] = {
-                    i: pd.read_csv(f'{list_path_data[n]}').set_index(index_for_data).astype('str').replace(r"[^-\d]",
+                    i: pd.read_csv(f'{list_path_data[n]}').set_index(index_for_data).astype('str').replace(r"[^-\d]+",
                                                                                                          "0",
                                                                                                          regex=True).loc[
                         s['properties']['name'], i] for i in
