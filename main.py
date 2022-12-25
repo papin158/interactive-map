@@ -148,7 +148,7 @@ async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
 
     if superKey:
 
-        variable = ["Кнопками", "Списком"]
+        variable = ["Списком", "Кнопками"]
         new_radio = st.sidebar.radio("", variable, horizontal=True)
 
         if new_radio:
