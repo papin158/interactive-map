@@ -81,14 +81,14 @@ def year_for_display(df: pd.DataFrame):
     return year
 
 
-def display_region_filter(df: pd.DataFrame, state_name: str):
+def display_region_filter(df: pd.DataFrame, state_name: str,):
     state_list = ['Все'] + list(df['Городские округа:'].unique())
     # state_list.sort()
     state_index = state_list.index(state_name) if state_name and state_name in state_list else 0
     return st.sidebar.selectbox(label='Выберите городской округ из списка', options=state_list, index=state_index)
 
 
-async def display_table(radio, state_name, on_key_table, **kwargs):
+async def display_table(list_path_data: list, radio, state_name, on_key_table, **kwargs):
     download_folder = kwargs.get('download_folder', )
     folder_name = kwargs.get('folder_name')
 
@@ -97,7 +97,7 @@ async def display_table(radio, state_name, on_key_table, **kwargs):
     if not folder_name:
         folder_name = "Данные csv"
 
-    list_path_data = [i for i in get_path_data(folder_name)]
+    # list_path_data = [i for i in get_path_data(folder_name)]
     name_data = [i.name for i in list_path_data]
 
     df = pd.DataFrame()
@@ -181,9 +181,9 @@ async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
     return state_name, mat
 
 
-async def test_display_map(year, melt_data: [pd.DataFrame], dict_data: dict, key):
+async def test_display_map(geo_data, year, melt_data: [pd.DataFrame], dict_data: dict, key):
     catalog = [k for k in dict_data.keys()]
-    old_dict_data = dict_data
+    # old_dict_data = dict_data
     dict_data = [k for k in dict_data.values()]
 
     API_key = r'd5833253-f0e7-44f9-a464-6d165eaa39db'
@@ -205,7 +205,7 @@ async def test_display_map(year, melt_data: [pd.DataFrame], dict_data: dict, key
 
     kld_map.add_child(get_mouse_position())
 
-    geo_data = get_geodata()[0]
+    # geo_data = get_geodata()[0]
 
     create_choropleth(geodata=geo_data, data=melt_data[key], index_data=catalog[key], year=year, name=catalog[key],
                       iter=0,
@@ -223,7 +223,7 @@ async def test_display_map(year, melt_data: [pd.DataFrame], dict_data: dict, key
 async def test_main():
     state_name = 'Все'
     on_key_table = False
-    melt_data, dict_data = all_data()
+    melt_data, dict_data, geodata, path_data = all_data()
     year = year_for_display(melt_data[0])
 
     labels_keys = {e: i for e, i in enumerate(dict_data.keys())}
@@ -240,7 +240,7 @@ async def test_main():
         else:
             dict_data[i] = False
 
-    state_name = await test_display_map(year, melt_data, dict_data, key)
+    state_name = await test_display_map(geodata, year, melt_data, dict_data, key)
     temp = await test(state_name, melt_data[0], res)
     if isinstance(temp, tuple):
         state_name, on_key_table = temp
@@ -254,15 +254,18 @@ async def test_main():
                           )
     await bar_chart(df=melt_data,
                     state_name=state_name, x='Год', y='Динамика', year=year, catalog=dict_data, key=key, radio=res)
-    await display_table(radio=res, state_name=state_name, on_key_table=on_key_table)
+    await display_table(radio=res, state_name=state_name, on_key_table=on_key_table, list_path_data=path_data)
     footer()
 
 
 @st.cache(persist=True, allow_output_mutation=True)
-def all_data() -> tuple[list[Any], dict]:
-    melt_data = [i for i in get_melt(gen_type='data')]
-    dict_data = {i: False for i in get_melt(gen_type='names')}
-    return melt_data, dict_data
+def all_data() -> tuple[list[Any], dict, dict, list]:
+    path = './Данные csv/'
+    path_data = [i for i in get_path_data(path)]
+    geodata, dict_data = get_geodata(path_data)
+    melt_data = [i for i in get_melt(gen_type='data', path_data=path_data)]
+    dict_data = {i: False for i in dict_data}
+    return melt_data, dict_data, geodata, path_data
 
 
 if __name__ == '__main__':

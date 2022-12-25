@@ -8,14 +8,14 @@ from HTML.Footer import __customize_footer_streamlit__
 from tables import tables
 
 
-def get_geodata():
+def get_geodata(path_data):
     """
     Выдаёт все данные связанные с CSV файлами.
     """
-    return _all_geo_data._get_geojson_modification()
+    return _all_geo_data._get_geojson_modification(list_path_data=path_data)
 
 
-def get_melt(var_name: str = None, value_name: str = None, gen_type: str = None):
+def get_melt(var_name: str = None, value_name: str = None, gen_type: str = None, path_data: list = None):
     """
     Генератор динамики, возвращает муниципалитет:год:динамика
 
@@ -24,7 +24,7 @@ def get_melt(var_name: str = None, value_name: str = None, gen_type: str = None)
     :param gen_type: Выбор возвращаемого генератора, data -> возвращает данные таблиц,
     name -> возвращает наименования файлов, которые были записаны в geojson как ключи.
     """
-    return _all_geo_data._get_all_melt(var_name=var_name, value_name=value_name, gen_type=gen_type)
+    return _all_geo_data._get_all_melt(var_name=var_name, value_name=value_name, gen_type=gen_type, list_path_data=path_data)
 
 
 def display_facts(df, year, metric_title, var: str = None, state_name=None, minikey=None):

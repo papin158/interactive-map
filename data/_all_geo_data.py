@@ -10,8 +10,8 @@ import streamlit as st
 import folium
 
 
-@st.cache(persist=True)
-def _get_geojson_modification():
+#@st.cache(persist=True)
+def _get_geojson_modification(list_path_data: list):
     temp_geo_data = "./admin_level_6.geojson" if os.path.exists(
         "./admin_level_6.geojson") else "../admin_level_6.geojson"
     temp_geo_data = gpd.read_file(temp_geo_data, encoding="utf-8")
@@ -19,7 +19,7 @@ def _get_geojson_modification():
     del temp_geo_data
     path_data = './Данные csv/' if os.path.exists('./Данные csv/') else '../Данные csv/'
     index_for_data = 'Городские округа:'
-    list_path_data = [i for i in get_all_data(path_data)]
+    # list_path_data = [i for i in get_all_data(path_data)]
     list_data = [i.name[:-4] for i in list_path_data]
     years = np.array(pd.read_csv(f'{list_path_data[6]}').set_index(index_for_data).columns.tolist(),
                      dtype=np.str_)
@@ -37,10 +37,10 @@ def _get_geojson_modification():
     return geo_data, list_data
 
 
-def _get_all_melt(*, var_name: str = None, value_name: str = None, gen_type: str = None) -> pd.DataFrame:
+def _get_all_melt(*, list_path_data: list, var_name: str = None, value_name: str = None, gen_type: str = None) -> pd.DataFrame:
     path_data = './Данные csv/' if os.path.exists('./Данные csv/') else '../Данные csv/'
     index_for_data = 'Городские округа:'
-    list_path_data = tuple(sorted([i for i in get_all_data(path_data)]))
+    # list_path_data = tuple(sorted([i for i in get_all_data(path_data)]))
     list_data = tuple([i.name[:-4] for i in list_path_data])
     years = np.array(pd.read_csv(f'{list_path_data[0]}').set_index(index_for_data).columns.tolist(),
                      dtype=np.str_)
