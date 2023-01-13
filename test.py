@@ -105,6 +105,6 @@ def get_all_data(path, nameOnly=False):
         yield fole
 
 
-# print(list(get_all_data("./Данные csv/")))
+print(list(i for i in get_all_data("./Данные csv/")))
 # a,b = _get_geojson_modification()
 # print(a['features'][0]['properties'])

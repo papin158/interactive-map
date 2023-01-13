@@ -14,7 +14,6 @@ from htbuilder.units import percent, pxx
 from loader import get_geodata, get_melt, display_facts, create_choropleth, get_mouse_position, footer, \
     get_radio_switch, get_path_data
 
-st.set_page_config(page_title="Карта", layout="wide")
 
 async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=None,
                     y=None, year=None, key=None, radio=None, ):
@@ -224,6 +223,7 @@ async def test_display_map(geo_data, year, melt_data: [pd.DataFrame], dict_data:
 
 
 async def test_main():
+    #st.set_page_config(page_title="Карта", layout="wide")
     state_name = 'Все'
     on_key_table = False
     melt_data, dict_data, geodata, path_data = all_data()
