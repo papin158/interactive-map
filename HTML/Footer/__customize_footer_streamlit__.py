@@ -3,8 +3,6 @@ from htbuilder import HtmlElement, div, ul, li, br, hr, a, p, img, styles, class
 from htbuilder.units import percent, pxx
 
 
-st.set_page_config(page_title="Карта", layout="wide")
-
 st.markdown(f'''
     <style>
         section[data-testid="stSidebar"] .css-ng1t4o {{width: 12rem;}}

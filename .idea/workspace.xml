@@ -6,15 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9050ac45-018f-4cd1-a56e-ebbf3dc5bd67" name="Changes" comment="Add">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/choropleths/_choropleth.py" beforeDir="false" afterPath="$PROJECT_DIR$/choropleths/_choropleth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HTML/Footer/__customize_footer_streamlit__.py" beforeDir="false" afterPath="$PROJECT_DIR$/HTML/Footer/__customize_footer_streamlit__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/2/Нал. осн. фондов по комм.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/2/Нал. осн. фондов по комм.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/6/Среднеспис. числ. работников ор.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Зерно злаковых и бобовых культу.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Зерно злаковых и бобовых культу.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Картофель.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Картофель.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Крупный рогатый скот.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Крупный рогатый скот.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Поголовье скота.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Поголовье скота.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Среднесписочное число работников организаций.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Среднесписочное число работников организаций.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,14 +215,8 @@
       <workItem from="1671800296842" duration="16467000" />
       <workItem from="1671885921263" duration="41595000" />
       <workItem from="1671931443022" duration="86000" />
-      <workItem from="1671959407577" duration="13073000" />
-    </task>
-    <task id="LOCAL-00004" summary="Add">
-      <created>1670858783941</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1670858783941</updated>
+      <workItem from="1671959407577" duration="16687000" />
+      <workItem from="1673627283455" duration="157000" />
     </task>
     <task id="LOCAL-00005" summary="Add">
       <created>1670860720076</created>
@@ -567,7 +554,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671966928093</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Add">
+      <created>1671983710144</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1671983710144</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
