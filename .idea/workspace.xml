@@ -8,18 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/file.html" beforeDir="false" afterPath="$PROJECT_DIR$/file.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Инвестиции в основной капитал/Инвестиции в основной капитал (без субъектов малого предпринимательства).csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Финансовая деятельность/Количество организаций, учтенных в территориальном разделе Статрегистра (без ИП).csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Ввод в действие жилых домов.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Ввод в действие жилых домов.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Граждан польз. соц поддерж.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Граждан польз. соц поддерж.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Естестественное движение населения.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Естестественное движение населения.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Зерно злаковых и бобовых культу.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Зерно злаковых и бобовых культу.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Оборот общественного питания без субъектов малого предпринимательства.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Оборот общественного питания без субъектов малого предпринимательства.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Оборот розничной торговли без субъектов малого предпринимательства.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Оборот розничной торговли без субъектов малого предпринимательства.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Производство яиц  скот.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Производство яиц  скот.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Среднемесячная зарплата.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Среднемесячная зарплата.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Число семей, получивших жилые п.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Число семей, получивших жилые п.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Инвестиции в основной капитал - без субъектов малого предпринимательства.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Инвестиции в основной капитал - без субъектов малого предпринимательства.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Количество организаций, учтенных в территориальном разделе Статрегистра без ИП.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Количество организаций, учтенных в территориальном разделе Статрегистра без ИП.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,21 +218,7 @@
       <workItem from="1671885921263" duration="41595000" />
       <workItem from="1671931443022" duration="86000" />
       <workItem from="1671959407577" duration="16687000" />
-      <workItem from="1673627283455" duration="2147000" />
-    </task>
-    <task id="LOCAL-00008" summary="Add">
-      <created>1671043163157</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1671043163157</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Add">
-      <created>1671043300607</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1671043300607</updated>
+      <workItem from="1673627283455" duration="3334000" />
     </task>
     <task id="LOCAL-00010" summary="Add">
       <created>1671065355304</created>
@@ -573,7 +549,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673629556971</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Add">
+      <created>1673630908326</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1673630908326</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Add">
+      <created>1673630995810</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1673630995810</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
