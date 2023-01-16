@@ -14,8 +14,8 @@ from htbuilder.units import percent, pxx
 from loader import get_geodata, get_melt, display_facts, create_choropleth, get_mouse_position, footer, \
     get_radio_switch, get_path_data
 
-
 st.set_page_config(page_title="Карта", layout="wide")
+
 
 async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=None,
                     y=None, year=None, key=None, radio=None, ):
@@ -230,7 +230,7 @@ async def test_main():
     melt_data, dict_data, geodata, path_data = all_data()
     year = year_for_display(melt_data[0])
     # dict_data = dict(sorted(dict_data.items(), key=lambda x: x[0]))
-    labels_keys = list(sorted(dict_data))
+    labels_keys = list(dict_data.keys())  # list(sorted(dict_data))
     # labels_keys = {e: i for e, i in enumerate(dict_data.keys())}
 
     a = get_radio_switch(path='./Данные csv/')
