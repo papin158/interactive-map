@@ -8,8 +8,25 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/file.html" beforeDir="false" afterPath="$PROJECT_DIR$/file.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Основные фонды организаций муниципальной формы собственности/Наличие основных фондов по коммерческим организациям (без субъектов малого предпринимательства).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Поголовье скота в хозяйствах всех категорий (коровы), на конец года, голов.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Поголовье скота в хозяйствах всех категорий (крупный рогатый скот), на конец года, голов.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Поголовье скота в хозяйствах всех категорий (свиньи), на конец года, голов.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Производство продуктов животноводства в хозяйствах всех категорий (молоко), тонн.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Производство продуктов животноводства в хозяйствах всех категорий (скот и птица на убой (в живом весе)), тонн.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Производство продуктов животноводства в хозяйствах всех категорий (яйца), тыс. штук.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Реализация продукции сельскохозяйственными организациями (зерно злаковых и бобовых культур), центнеров.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Реализация продукции сельскохозяйственными организациями (картофель), центнеров.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Реализация продукции сельскохозяйственными организациями (молоко), центнеров.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Реализация продукции сельскохозяйственными организациями (скот и птица в живой массе), центнеров.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Ввод в действие жилых домов, кв. м общей площади.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Ввод в действие жилых домов, кв. м общей площади.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Естестественное движение населения, чел.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Естестественное движение населения, чел.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Инвестиции в основной капитал - без субъектов малого предпринимательства.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Инвестиции в основной капитал - без субъектов малого предпринимательства.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Количество организаций, учтенных в территориальном разделе Статрегистра без ИП.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Количество организаций, учтенных в территориальном разделе Статрегистра без ИП.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Общая площадь жилых помещений, тысяч квадратных метров.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Общая площадь жилых помещений, тысяч квадратных метров.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Общее число семей, получавших субсидии на оплату жилого помещения и коммунальных услуг, единиц.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Общее число семей, получавших субсидии на оплату жилого помещения и коммунальных услуг, единиц.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Среднемесячная зарплата, руб.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Среднемесячная зарплата, руб.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Численность воспитанников организаций дошкольного образования, по присмотру и уходу за детьми, чел.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Численность воспитанников организаций дошкольного образования, по присмотру и уходу за детьми, чел.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,21 +235,9 @@
       <workItem from="1671885921263" duration="41595000" />
       <workItem from="1671931443022" duration="86000" />
       <workItem from="1671959407577" duration="16687000" />
-      <workItem from="1673627283455" duration="3334000" />
-    </task>
-    <task id="LOCAL-00010" summary="Add">
-      <created>1671065355304</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1671065355304</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Add">
-      <created>1671127133793</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1671127133793</updated>
+      <workItem from="1673627283455" duration="4019000" />
+      <workItem from="1673868648658" duration="6067000" />
+      <workItem from="1674903616085" duration="1579000" />
     </task>
     <task id="LOCAL-00012" summary="Add">
       <created>1671128151543</created>
@@ -563,7 +568,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673630995810</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Add">
+      <created>1673632176564</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1673632176564</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Add">
+      <created>1673874799743</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1673874799743</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

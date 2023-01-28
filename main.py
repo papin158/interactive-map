@@ -14,7 +14,7 @@ from htbuilder.units import percent, pxx
 from loader import get_geodata, get_melt, display_facts, create_choropleth, get_mouse_position, footer, \
     get_radio_switch, get_path_data
 
-st.set_page_config(page_title="Карта", layout="wide")
+#st.set_page_config(page_title="Карта", layout="wide")
 
 
 async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=None,
@@ -44,11 +44,13 @@ async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=No
                                      y=df[y],
                                      mode='lines',
                                      opacity=0.7,
+                                     line=dict(width=8),
                                      # showlegend=True,
                                      legendrank=10,
                                      name=f'Динамика изменения численности населения городского округа {state_name}',
                                      ))
-            fig.update_layout(legend_orientation="h", xaxis_fixedrange=True, yaxis_fixedrange=True)
+            fig.update_layout(xaxis=dict(showgrid=False), yaxis=dict(showgrid=False), legend_orientation="h", xaxis_fixedrange=True, yaxis_fixedrange=True)
+
             fig.write_html(r"./file.html")
 
             with colms[0]:
@@ -60,7 +62,7 @@ async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=No
                                      df['Динамика'].sum() / len(df['Динамика'])]
 
             df = df.sort_values(by=y)
-            st.write(f'Сравнение показателя "{old_catalog[key]}" по округам за {year} г.')
+            st.write(f'Сравнение показателя "{old_catalog[key]}" по МО за {year} г.')
 
             fig = px.bar(data_frame=df, y='Городские округа:', x=y, orientation='h', text='Городские округа:') \
                 .update_xaxes(col='Динамика').update_yaxes(visible=False, showticklabels=False) \
@@ -144,7 +146,7 @@ async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
     with a[1]:
         var3 = st.empty()
 
-    superKey = varZ.checkbox("Выбрать регион")
+    superKey = varZ.checkbox("Выбрать МО")
     mat = var3.checkbox("Таблица", value=True)
 
     if not superKey:
@@ -199,10 +201,10 @@ async def test_display_map(geo_data, year, melt_data: [pd.DataFrame], dict_data:
         scrollWheelZoom=False,
         min_zoom=7,
         max_zoom=10,
-        # tiles='Yandex',
-        # # tiles=r'https://api-maps.yandex.ru/2.1/?apikey=d5833253-f0e7-44f9-a464-6d165eaa39db&lang=ru_RU',
-        # API_key = 'https://api-maps.yandex.ru/2.1/?apikey=d5833253-f0e7-44f9-a464-6d165eaa39db&lang=ru_RU',
-        # attr='Yandex'
+        tiles='Yandex',
+        # tiles=r'https://api-maps.yandex.ru/2.1/?apikey=d5833253-f0e7-44f9-a464-6d165eaa39db&lang=ru_RU',
+        API_key = 'https://api-maps.yandex.ru/2.1/?apikey=d5833253-f0e7-44f9-a464-6d165eaa39db&lang=ru_RU',
+        attr='Yandex'
     )
 
     kld_map.add_child(folium.TileLayer('openstreetmap', attr=".", show=False, overlay=True))
@@ -234,8 +236,8 @@ async def test_main():
     # labels_keys = {e: i for e, i in enumerate(dict_data.keys())}
 
     a = get_radio_switch(path='./Данные csv/')
-    radio = st.sidebar.radio('Фильтры', a.keys(), key=2, horizontal=True)
-    res = st.sidebar.radio(radio, a[radio])
+    radio = st.sidebar.selectbox('Показатели', a.keys())#, key=2, horizontal=True)
+    res = st.sidebar.selectbox(radio, a[radio])
 
     key = 0
     for n, i in enumerate(dict_data):
@@ -252,11 +254,15 @@ async def test_main():
 
     for e, i in enumerate(labels_keys):
         if res == labels_keys[e]:
-            display_facts(df=melt_data[e], year=year, state_name=state_name, var='Динамика',
-                          metric_title=f'''{res} {f"городского округа {state_name} на {year} г."
-                          if state_name != "Все" else f"Калининградской области за {year} г."}''',
-                          minikey=res
-                          )
+            if state_name != "Все":
+                st.write(f'"{res}" муниципального образования {state_name}')
+            else:
+                st.write(f'"{res}" по всему субъекту')
+            # display_facts(df=melt_data[e], year=year, state_name=state_name, var='Динамика',
+            #               metric_title=f'''{res} {f"городского округа {state_name} на {year} г."
+            #               if state_name != "Все" else f"Калининградской области за {year} г."}''',
+            #               minikey=res
+            #               )
     await bar_chart(df=melt_data,
                     state_name=state_name, x='Год', y='Динамика', year=year, catalog=dict_data, key=key, radio=res)
     await display_table(radio=res, state_name=state_name, on_key_table=on_key_table, list_path_data=path_data)
