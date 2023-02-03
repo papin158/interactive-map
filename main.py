@@ -14,7 +14,7 @@ from htbuilder.units import percent, pxx
 from loader import get_geodata, get_melt, display_facts, create_choropleth, get_mouse_position, footer, \
     get_radio_switch, get_path_data
 
-st.set_page_config(page_title="Карта", layout="wide")
+#st.set_page_config(page_title="Карта", layout="wide")
 
 
 async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=None,
@@ -58,11 +58,11 @@ async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=No
                 st.plotly_chart(fig, config=config, use_container_width=True)
 
         else:
-            df.loc[len(df.index)] = ["Среднее значение по Калининградской области", year,
-                                     df['Динамика'].sum() / len(df['Динамика'])]
+            # df.loc[len(df.index)] = ["Среднее значение по Калининградской области", year,
+            #                          df['Динамика'].sum() / len(df['Динамика'])]
 
             df = df.sort_values(by=y)
-            st.write(f'Сравнение показателя "{old_catalog[key]}" по МО за {year} г.')
+            # st.write(f'Сравнение показателя "{old_catalog[key]}" по МО за {year} г.')
 
             fig = px.bar(data_frame=df, y='Городские округа:', x=y, orientation='h', text='Городские округа:') \
                 .update_xaxes(col='Динамика').update_yaxes(visible=False, showticklabels=False) \
@@ -91,7 +91,7 @@ def display_region_filter(df: pd.DataFrame, state_name: str, ):
     state_list = ['Все'] + list(df['Городские округа:'].unique())
     # state_list.sort()
     state_index = state_list.index(state_name) if state_name and state_name in state_list else 0
-    return st.sidebar.selectbox(label='Выберите городской округ из списка', options=state_list, index=state_index)
+    return st.sidebar.selectbox(label='Выберите МО из списка', options=state_list, index=state_index)
 
 
 async def display_table(list_path_data: list, radio, state_name, on_key_table, **kwargs):
@@ -115,7 +115,7 @@ async def display_table(list_path_data: list, radio, state_name, on_key_table, *
         df = df[df['Городские округа:'] == state_name]
 
     if on_key_table:
-        st.write(f"""Изменение показателя "{radio}" по годам""")
+        # st.write(f"""Изменение показателя "{radio}" по годам""")
         st.table(df)
         with pd.ExcelWriter(f"./{download_folder}/{radio}.xlsx", engine='xlsxwriter') as writer:
             df.to_excel(writer, index=False, engine='xlsxwriter', sheet_name=radio[0:30] if len(radio) > 30 else radio)
