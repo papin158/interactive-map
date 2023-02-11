@@ -1,4 +1,5 @@
 import asyncio
+import pathlib
 from typing import List, Any
 
 import folium
@@ -6,15 +7,18 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objs as go
 from streamlit_folium import st_folium
+from data import _globals
 import pandas as pd
 import numpy as np
 from htbuilder import hr, styles
 from htbuilder.units import percent, pxx
 
 from loader import get_geodata, get_melt, display_facts, create_choropleth, get_mouse_position, footer, \
-    get_radio_switch, get_path_data
+    get_radio_switch, get_path_data, load_globals
 
-st.set_page_config(page_title="Карта", layout="wide")
+globals_names = load_globals()
+
+#st.set_page_config(page_title="Карта", layout="wide")
 
 
 async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=None,
@@ -24,15 +28,15 @@ async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=No
     if catalog[key]:
         df = df[key].sort_values(by='Год', ascending=True)
 
-        if state_name != "Все":
-            df = df[df['Городские округа:'] == state_name]
+        if state_name != globals_names["all_states"]:
+            df = df[df[globals_names["index_for_data"]] == state_name]#df = df[df['Городские округа:'] == state_name]
         else:
             df = df[df['Год'] == year]
 
-        st.markdown(
-            f'{hr(style=styles(display="block", margin=pxx(8, 8, "auto", "auto"), border_style="inset", border_width=pxx(2)))}',
-            unsafe_allow_html=True)
-        if state_name != "Все":
+        # st.markdown(
+        #     f'{hr(style=styles(display="block", margin=pxx(8, 8, "auto", "auto"), border_style="inset", border_width=pxx(2)))}',
+        #     unsafe_allow_html=True)
+        if state_name != globals_names["all_states"]:
             st.write(f'Динамика изменения показателя "{radio}" городского округа {state_name}', )
             colms = st.columns(1)
             fig = go.Figure()
@@ -64,7 +68,7 @@ async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=No
             df = df.sort_values(by=y)
             # st.write(f'Сравнение показателя "{old_catalog[key]}" по МО за {year} г.')
 
-            fig = px.bar(data_frame=df, y='Городские округа:', x=y, orientation='h', text='Городские округа:') \
+            fig = px.bar(data_frame=df, y=globals_names["index_for_data"], x=y, orientation='h', text=globals_names["index_for_data"]) \
                 .update_xaxes(col='Динамика').update_yaxes(visible=False, showticklabels=False) \
                 .update_layout(xaxis_fixedrange=True, yaxis_fixedrange=True, height=600) \
                 .update_traces(textfont_size=12, textangle=0, textposition="outside", cliponaxis=False)
@@ -88,7 +92,7 @@ def year_for_display(df: pd.DataFrame):
 
 
 def display_region_filter(df: pd.DataFrame, state_name: str, ):
-    state_list = ['Все'] + list(df['Городские округа:'].unique())
+    state_list = [globals_names["all_states"]] + list(df[globals_names["index_for_data"]].unique())
     # state_list.sort()
     state_index = state_list.index(state_name) if state_name and state_name in state_list else 0
     return st.sidebar.selectbox(label='Выберите МО из списка', options=state_list, index=state_index)
@@ -111,18 +115,28 @@ async def display_table(list_path_data: list, radio, state_name, on_key_table, *
         if i[:-4] == radio:
             df = pd.read_csv(f'./{list_path_data[n]}')
 
-    if state_name != "Все":
-        df = df[df['Городские округа:'] == state_name]
+    if state_name != globals_names["all_states"]:
+        df = df[df[globals_names["index_for_data"]] == state_name]
 
     if on_key_table:
         # st.write(f"""Изменение показателя "{radio}" по годам""")
         st.table(df)
+
+        hide_table_row_index = """
+                    <style>
+                    thead tr th:first-child {display:none}
+                    tbody th {display:none}
+                    </style>
+                    """
+
+        st.markdown(hide_table_row_index, unsafe_allow_html=True)
+
         with pd.ExcelWriter(f"./{download_folder}/{radio}.xlsx", engine='xlsxwriter') as writer:
             df.to_excel(writer, index=False, engine='xlsxwriter', sheet_name=radio[0:30] if len(radio) > 30 else radio)
 
         with open(f"./{download_folder}/{radio}.xlsx", 'rb') as f:
             st.download_button('Скачать таблицу', f,
-                               file_name=f'{radio}{"" if state_name == "Все" else f"_{state_name}"}.xlsx')
+                               file_name=f'{radio}{"" if state_name == globals_names["all_states"] else f"_{state_name}"}.xlsx')
 
         st.write('''к - данные не публикуются в целях обеспечения конфиденциальности первичных статистических данных, 
         полученных от организаций, в соответствии с Федеральным законом от 29.11.07 № 282-ФЗ "Об официальном 
@@ -137,9 +151,9 @@ async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
         st.session_state.disabled_2 = False
         st.session_state.disabled_3 = True
 
-    st.sidebar.markdown(
-        f'{hr(style=styles(display="block", margin=pxx(8, 8, "auto", "auto"), border_style="inset", border_width=pxx(2)))}',
-        unsafe_allow_html=True)
+    # st.sidebar.markdown(
+    #     f'{hr(style=styles(display="block", margin=pxx(8, 8, "auto", "auto"), border_style="inset", border_width=pxx(2)))}',
+    #     unsafe_allow_html=True)
     a = st.sidebar.columns(2)
     with a[0]:
         varZ = st.empty()
@@ -150,7 +164,7 @@ async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
     mat = var3.checkbox("Таблица", value=True)
 
     if not superKey:
-        state_name = 'Все'
+        state_name = globals_names["all_states"]
 
     if superKey:
 
@@ -159,7 +173,7 @@ async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
 
         if new_radio:
             if new_radio == variable[1]:
-                data_kld = list(data_kld['Городские округа:'].unique())
+                data_kld = list(data_kld[globals_names["index_for_data"]].unique())
                 data_len = len(data_kld)
 
                 max_columns = 3
@@ -181,7 +195,7 @@ async def test(state_name: str, data_kld: pd.DataFrame, radio) -> [str, bool]:
                         n += round(data_len / max_columns)
 
                 if st.sidebar.button("Калининградская область"):
-                    state_name = 'Все'
+                    state_name = globals_names["all_states"]
             if new_radio == variable[0]:
                 state_name = display_region_filter(state_name=state_name, df=data_kld)
     return state_name, mat
@@ -219,15 +233,39 @@ async def test_display_map(geo_data, year, melt_data: [pd.DataFrame], dict_data:
 
     folium.LayerControl().add_to(kld_map)
     st_map = st_folium(kld_map, width=1440)
-    state_name = 'Все'
+    state_name = globals_names["all_states"]
     if st_map['last_active_drawing']:
         state_name = st_map['last_active_drawing']['properties']['name']
 
     return state_name
 
+async def user_guide(**kwargs):
+
+   # Руководство пользователя, скачивание
+
+
+    download_folder = kwargs.get('download_folder')
+    user_guide_doc = kwargs.get('user_guide_doc')
+
+    if not download_folder:
+        download_folder = 'Другие данные для скачивания пользователем'
+    if not user_guide_doc:
+        docs = [i for i in get_path_data(f"./{download_folder}/", suffix="*.docx")]
+        name_user_guide_doc = "Руководство пользователя"
+        for user_guide_doc in docs:
+            if user_guide_doc.name[:-len(user_guide_doc.suffix)].lower() == name_user_guide_doc.lower():
+                with open(user_guide_doc, 'rb') as f:
+                    st.download_button(f'Скачать {name_user_guide_doc.lower()}', f,
+                                       file_name=f"{user_guide_doc.name}")
+    else:
+        with open(f"./{download_folder}/{user_guide_doc}", 'rb') as f:
+            st.download_button(f'Скачать {user_guide_doc.lower()}', f,
+                               file_name=f"{user_guide_doc}")
+
+
 
 async def test_main():
-    state_name = 'Все'
+    state_name = globals_names["all_states"]
     on_key_table = False
     melt_data, dict_data, geodata, path_data = all_data()
     year = year_for_display(melt_data[0])
@@ -254,18 +292,19 @@ async def test_main():
 
     for e, i in enumerate(labels_keys):
         if res == labels_keys[e]:
-            if state_name != "Все":
+            if state_name != globals_names["all_states"]:
                 st.write(f'"{res}" муниципального образования {state_name}')
             else:
                 st.write(f'"{res}" по всему субъекту')
             # display_facts(df=melt_data[e], year=year, state_name=state_name, var='Динамика',
             #               metric_title=f'''{res} {f"городского округа {state_name} на {year} г."
-            #               if state_name != "Все" else f"Калининградской области за {year} г."}''',
+            #               if state_name != globals_names['all_states'] else f"Калининградской области за {year} г."}''',
             #               minikey=res
             #               )
     await bar_chart(df=melt_data,
                     state_name=state_name, x='Год', y='Динамика', year=year, catalog=dict_data, key=key, radio=res)
     await display_table(radio=res, state_name=state_name, on_key_table=on_key_table, list_path_data=path_data)
+    await user_guide()
     footer()
 
 

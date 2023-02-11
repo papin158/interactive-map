@@ -99,12 +99,18 @@ def _get_all_melt(*, var_name: str = None, value_name: str = None, gen_type: str
             yield name[:-4]
 
 
-def get_all_data(path, nameOnly=False):
-    dir = pathlib.Path(path).rglob('*.csv')
+def get_all_data(path, suffix):
+    if not suffix:
+        suffix = '*.csv'
+
+    dir = pathlib.Path(path).rglob(suffix)
     for fole in dir:
         yield fole
 
 
-print(list(i for i in get_all_data("./Данные csv/")))
+download_folder = 'Другие данные для скачивания пользователем'
+docs = [i for i in get_all_data(f"./{download_folder}/", suffix='*.docx')]
+user_guide_doc = [{i.name[:-len(i.suffix)]: i.suffix} for i in docs]
+print(user_guide_doc)
 # a,b = _get_geojson_modification()
 # print(a['features'][0]['properties'])

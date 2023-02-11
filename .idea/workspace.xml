@@ -5,27 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9050ac45-018f-4cd1-a56e-ebbf3dc5bd67" name="Changes" comment="Add">
+      <change afterPath="$PROJECT_DIR$/data/_globals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/choropleths/_tooltips.py" beforeDir="false" afterPath="$PROJECT_DIR$/choropleths/_tooltips.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/_all_geo_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/_all_geo_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/file.html" beforeDir="false" afterPath="$PROJECT_DIR$/file.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/loader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Основные фонды организаций муниципальной формы собственности/Наличие основных фондов по коммерческим организациям (без субъектов малого предпринимательства).csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Поголовье скота в хозяйствах всех категорий (коровы), на конец года, голов.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Поголовье скота в хозяйствах всех категорий (крупный рогатый скот), на конец года, голов.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Поголовье скота в хозяйствах всех категорий (свиньи), на конец года, голов.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Производство продуктов животноводства в хозяйствах всех категорий (молоко), тонн.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Производство продуктов животноводства в хозяйствах всех категорий (скот и птица на убой (в живом весе)), тонн.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Производство продуктов животноводства в хозяйствах всех категорий (яйца), тыс. штук.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Реализация продукции сельскохозяйственными организациями (зерно злаковых и бобовых культур), центнеров.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Реализация продукции сельскохозяйственными организациями (картофель), центнеров.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Реализация продукции сельскохозяйственными организациями (молоко), центнеров.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные csv/Сельское хозяйство/Реализация продукции сельскохозяйственными организациями (скот и птица в живой массе), центнеров.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Ввод в действие жилых домов, кв. м общей площади.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Ввод в действие жилых домов, кв. м общей площади.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv.7z" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv.7z" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Занятость и заработная плата/Среднемесячная зарплата, руб.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Занятость и заработная плата/Среднемесячная зарплата, руб.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Занятость и заработная плата/Среднесписочное число работников организаций.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Занятость и заработная плата/Среднесписочное число работников организаций.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Инвестиции в основной капитал/Инвестиции в основной капитал - без субъектов малого предпринимательства.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Инвестиции в основной капитал/Инвестиции в основной капитал - без субъектов малого предпринимательства.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Коммунальная сфера/Общая площадь жилых помещений, тысяч квадратных метров.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Коммунальная сфера/Общая площадь жилых помещений, тысяч квадратных метров.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Население/Естестественное движение населения, чел.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Население/Естестественное движение населения, чел.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Население/Миграционное движение, чел.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Население/Миграционное движение, чел.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Население/Численность детей в возрасте 1 - 6 лет, чел.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Население/Численность детей в возрасте 1 - 6 лет, чел.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Население/Численность детей в возрасте 5 - 18 лет, чел.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Население/Численность детей в возрасте 5 - 18 лет, чел.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Население/Численность населения, чел.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Население/Численность населения, чел.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Образование/Численность воспитанников организаций дошкольного образования, по присмотру и уходу за детьми, чел.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Образование/Численность воспитанников организаций дошкольного образования, по присмотру и уходу за детьми, чел.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Основные фонды организаций муниципальной формы собственности/Наличие основных фондов по некоммерческим организациям.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Основные фонды организаций муниципальной формы собственности/Наличие основных фондов по некоммерческим организациям.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Розничная торговля и общественное питание/Оборот общественного питания без субъектов малого предпринимательства.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Розничная торговля и общественное питание/Оборот общественного питания без субъектов малого предпринимательства.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Розничная торговля и общественное питание/Оборот розничной торговли без субъектов малого предпринимательства.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Розничная торговля и общественное питание/Оборот розничной торговли без субъектов малого предпринимательства.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Розничная торговля и общественное питание/Общий объем всех продовольственных товаров.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Розничная торговля и общественное питание/Общий объем всех продовольственных товаров.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Социальная поддержка по оплате жилых помещений и коммунальных услуг/Общее число семей, получавших субсидии на оплату жилого помещения и коммунальных услуг, единиц.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Социальная поддержка по оплате жилых помещений и коммунальных услуг/Общее число семей, получавших субсидии на оплату жилого помещения и коммунальных услуг, единиц.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Социальная поддержка по оплате жилых помещений и коммунальных услуг/Объем средств, предусмотренных на предоставление социальной поддержки по оплате жилого помещения и коммунальных услуг, тыс. рублей.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Социальная поддержка по оплате жилых помещений и коммунальных услуг/Объем средств, предусмотренных на предоставление социальной поддержки по оплате жилого помещения и коммунальных услуг, тыс. рублей.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Социальная поддержка по оплате жилых помещений и коммунальных услуг/Сумма начисленных субсидий населению на оплату жилого помещения и коммунальных услуг, тыс. рублей.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Социальная поддержка по оплате жилых помещений и коммунальных услуг/Сумма начисленных субсидий населению на оплату жилого помещения и коммунальных услуг, тыс. рублей.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Социальная поддержка по оплате жилых помещений и коммунальных услуг/Численность граждан, пользующихся соц. поддержкой по оплате жилого помещения и коммунальных услуг на конец года, единиц.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Социальная поддержка по оплате жилых помещений и коммунальных услуг/Численность граждан, пользующихся соц. поддержкой по оплате жилого помещения и коммунальных услуг на конец года, единиц.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Строительство жилья/Ввод в действие жилых домов, кв. м общей площади.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Строительство жилья/Ввод в действие жилых домов, кв. м общей площади.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Строительство жилья/Количество выданных разрешений на ввод объектов в эксплуатацию, ед.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Строительство жилья/Количество выданных разрешений на ввод объектов в эксплуатацию, ед.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Строительство жилья/Количество выданных разрешений на строительство, ед.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Строительство жилья/Количество выданных разрешений на строительство, ед.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Строительство жилья/Число семей, получивших жилые помещения и улучшивших жилищные условия, ед.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Строительство жилья/Число семей, получивших жилые помещения и улучшивших жилищные условия, ед.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Строительство жилья/Число семей, состоящих на учете в качестве нуждающихся в жилых помещениях на конец года, единиц.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Строительство жилья/Число семей, состоящих на учете в качестве нуждающихся в жилых помещениях на конец года, единиц.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные csv/Финансовая деятельность/Количество организаций, учтенных в территориальном разделе Статрегистра без ИП.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Финансовая деятельность/Количество организаций, учтенных в территориальном разделе Статрегистра без ИП.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Естестественное движение населения, чел.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Естестественное движение населения, чел.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Инвестиции в основной капитал - без субъектов малого предпринимательства.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Инвестиции в основной капитал - без субъектов малого предпринимательства.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Количество организаций, учтенных в территориальном разделе Статрегистра без ИП.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Количество организаций, учтенных в территориальном разделе Статрегистра без ИП.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Оборот общественного питания без субъектов малого предпринимательства.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Оборот общественного питания без субъектов малого предпринимательства.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Общая площадь жилых помещений, тысяч квадратных метров.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Общая площадь жилых помещений, тысяч квадратных метров.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Общее число семей, получавших субсидии на оплату жилого помещения и коммунальных услуг, единиц.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Общее число семей, получавших субсидии на оплату жилого помещения и коммунальных услуг, единиц.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Среднемесячная зарплата, руб.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Среднемесячная зарплата, руб.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Среднесписочное число работников организаций.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Среднесписочное число работников организаций.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Данные скачивания таблиц/Численность воспитанников организаций дошкольного образования, по присмотру и уходу за детьми, чел.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Данные скачивания таблиц/Численность воспитанников организаций дошкольного образования, по присмотру и уходу за детьми, чел.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -237,35 +255,11 @@
       <workItem from="1671959407577" duration="16687000" />
       <workItem from="1673627283455" duration="4019000" />
       <workItem from="1673868648658" duration="6067000" />
-      <workItem from="1674903616085" duration="1579000" />
-    </task>
-    <task id="LOCAL-00012" summary="Add">
-      <created>1671128151543</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1671128151543</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Add">
-      <created>1671136988533</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1671136988533</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Add">
-      <created>1671286534188</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1671286534188</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Add">
-      <created>1671286860078</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1671286860078</updated>
+      <workItem from="1674903616085" duration="1803000" />
+      <workItem from="1675073834945" duration="584000" />
+      <workItem from="1675434071246" duration="1526000" />
+      <workItem from="1675973377492" duration="118000" />
+      <workItem from="1676103132839" duration="11123000" />
     </task>
     <task id="LOCAL-00016" summary="Add">
       <created>1671287010660</created>
@@ -582,7 +576,35 @@
       <option name="project" value="LOCAL" />
       <updated>1673874799743</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Add">
+      <created>1674905398045</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1674905398045</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Add">
+      <created>1675073848038</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1675073848039</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Add">
+      <created>1675435587145</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1675435587145</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Add">
+      <created>1675435594099</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1675435594099</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,13 +650,18 @@
           <line>363</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>241</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject4$all_data.coverage" NAME="all_data Coverage Results" MODIFIED="1671020505821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/pythonProject4$_all_geo_data__1_.coverage" NAME="_all_geo_data (1) Coverage Results" MODIFIED="1671231719161" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
-    <SUITE FILE_PATH="coverage/pythonProject4$test.coverage" NAME="test Coverage Results" MODIFIED="1673630674405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject4$test.coverage" NAME="test Coverage Results" MODIFIED="1676113824315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pythonProject4$choropleths.coverage" NAME="choropleths Coverage Results" MODIFIED="1671220336545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pythonProject4$pytest_in__all_geo_data_py.coverage" NAME="pytest in _all_geo_data.py Coverage Results" MODIFIED="1671404183366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
     <SUITE FILE_PATH="coverage/pythonProject4$_tooltips.coverage" NAME="_tooltips Coverage Results" MODIFIED="1671278790858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/choropleths" />
