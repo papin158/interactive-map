@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9050ac45-018f-4cd1-a56e-ebbf3dc5bd67" name="Changes" comment="Add">
-      <change afterPath="$PROJECT_DIR$/data/_globals.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Другие данные для скачивания пользователем/Ограничение_прав_и_свобод_человека_и_гражданина.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/choropleths/_tooltips.py" beforeDir="false" afterPath="$PROJECT_DIR$/choropleths/_tooltips.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/_all_geo_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/_all_geo_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file.html" beforeDir="false" afterPath="$PROJECT_DIR$/file.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Данные csv.7z" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv.7z" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Данные csv/Занятость и заработная плата/Среднемесячная зарплата, руб.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Занятость и заработная плата/Среднемесячная зарплата, руб.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Данные csv/Занятость и заработная плата/Среднесписочное число работников организаций.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Данные csv/Занятость и заработная плата/Среднесписочное число работников организаций.csv" afterDir="false" />
@@ -259,14 +253,7 @@
       <workItem from="1675073834945" duration="584000" />
       <workItem from="1675434071246" duration="1526000" />
       <workItem from="1675973377492" duration="118000" />
-      <workItem from="1676103132839" duration="11123000" />
-    </task>
-    <task id="LOCAL-00016" summary="Add">
-      <created>1671287010660</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1671287010660</updated>
+      <workItem from="1676103132839" duration="12054000" />
     </task>
     <task id="LOCAL-00017" summary="Add">
       <created>1671287503105</created>
@@ -604,7 +591,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675435594099</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Add">
+      <created>1676114670612</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1676114670612</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

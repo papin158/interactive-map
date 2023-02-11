@@ -18,7 +18,7 @@ from loader import get_geodata, get_melt, display_facts, create_choropleth, get_
 
 globals_names = load_globals()
 
-#st.set_page_config(page_title="Карта", layout="wide")
+st.set_page_config(page_title="Карта", layout="wide")
 
 
 async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=None,
