@@ -85,9 +85,11 @@ async def bar_chart(df: List[pd.DataFrame], catalog: dict, state_name=None, x=No
 
 
 def year_for_display(df: pd.DataFrame):
-    df = df['Год'].astype(np.int32)
-    year = str(st.sidebar.slider("Год: ", min_value=min(df),
-                                 max_value=max(df), value=max(df), step=1))
+    df = df['Год'].drop_duplicates()
+    # df = df['Год'].astype(np.int32)
+    # year = str(st.sidebar.slider("Год: ", min_value=min(df),
+    #                              max_value=max(df), value=max(df), step=1))
+    year = str(st.sidebar.selectbox('Год: ', options=df))
     return year
 
 
@@ -239,28 +241,31 @@ async def test_display_map(geo_data, year, melt_data: [pd.DataFrame], dict_data:
 
     return state_name
 
-async def user_guide(**kwargs):
+async def download_file(**kwargs):
+
 
    # Руководство пользователя, скачивание
 
 
     download_folder = kwargs.get('download_folder')
-    user_guide_doc = kwargs.get('user_guide_doc')
+    need_doc = kwargs.get('need_doc')
+    name_downloaded_file = kwargs.get('name_downloaded_file')
 
     if not download_folder:
         download_folder = 'Другие данные для скачивания пользователем'
-    if not user_guide_doc:
-        docs = [i for i in get_path_data(f"./{download_folder}/", suffix="*.docx")]
-        name_user_guide_doc = "Руководство пользователя"
-        for user_guide_doc in docs:
-            if user_guide_doc.name[:-len(user_guide_doc.suffix)].lower() == name_user_guide_doc.lower():
-                with open(user_guide_doc, 'rb') as f:
-                    st.download_button(f'Скачать {name_user_guide_doc.lower()}', f,
-                                       file_name=f"{user_guide_doc.name}")
-    else:
-        with open(f"./{download_folder}/{user_guide_doc}", 'rb') as f:
-            st.download_button(f'Скачать {user_guide_doc.lower()}', f,
-                               file_name=f"{user_guide_doc}")
+
+    if not need_doc:
+        need_doc = "Руководство пользователя"
+
+    if not name_downloaded_file:
+        name_downloaded_file = need_doc.lower()
+
+    docs = [i for i in get_path_data(f"./{download_folder}/", suffix="*.docx")]
+    for user_doc in docs:
+        if user_doc.name[:-len(user_doc.suffix)].lower() == need_doc.lower():
+            with open(user_doc, 'rb') as f:
+                st.download_button(f'Скачать {name_downloaded_file}', f,
+                                   file_name=f"{name_downloaded_file}{user_doc.suffix}")
 
 
 
@@ -295,7 +300,7 @@ async def test_main():
             if state_name != globals_names["all_states"]:
                 st.write(f'"{res}" муниципального образования {state_name}')
             else:
-                st.write(f'"{res}" по всему субъекту')
+                st.write(f'"{res}" по муниципальным образованиям Калининградской области')
             # display_facts(df=melt_data[e], year=year, state_name=state_name, var='Динамика',
             #               metric_title=f'''{res} {f"городского округа {state_name} на {year} г."
             #               if state_name != globals_names['all_states'] else f"Калининградской области за {year} г."}''',
@@ -304,7 +309,7 @@ async def test_main():
     await bar_chart(df=melt_data,
                     state_name=state_name, x='Год', y='Динамика', year=year, catalog=dict_data, key=key, radio=res)
     await display_table(radio=res, state_name=state_name, on_key_table=on_key_table, list_path_data=path_data)
-    await user_guide()
+    await download_file()#(need_doc="Ограничение_прав_и_свобод_человека_и_гражданина", name_downloaded_file=None)
     footer()
 
 
